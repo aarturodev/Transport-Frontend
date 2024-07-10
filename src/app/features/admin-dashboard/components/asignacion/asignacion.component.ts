@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './asignacion.component.html',
   styleUrl: './asignacion.component.css'
 })
-export class AsignacionComponent {
+export default class AsignacionComponent {
 
 }

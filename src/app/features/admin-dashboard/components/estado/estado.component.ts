@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './estado.component.html',
   styleUrl: './estado.component.css'
 })
-export class EstadoComponent {
+export default class EstadoComponent {
 
 }

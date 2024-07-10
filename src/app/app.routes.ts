@@ -65,6 +65,22 @@ export const routes: Routes = [
             loadComponent: ()=> import('@features/admin-dashboard/components/gestion-cobro/gestion-cobro.component')
           },
           {
+            path: 'Ajuste-derecho-aclaratorio',
+            loadComponent: ()=> import('@features/admin-dashboard/components/ajuste-derecho-aclaratorio/ajuste-derecho-aclaratorio.component')
+          },
+          {
+            path: 'Estado',
+            loadComponent: ()=> import('@features/admin-dashboard/components/estado/estado.component')
+          },
+          {
+            path: 'Asignacion',
+            loadComponent: ()=> import('@features/admin-dashboard/components/asignacion/asignacion.component')
+          },
+          {
+            path: 'Administrador-usuarios',
+            loadComponent: ()=> import('@features/admin-dashboard/components/administrador-usuarios/administrador-usuarios.component')
+          },
+          {
             path: '',
             redirectTo: 'Expedientes',
             pathMatch: 'full'

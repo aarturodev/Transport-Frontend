@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './administrador-usuarios.component.html',
   styleUrl: './administrador-usuarios.component.css'
 })
-export class AdministradorUsuariosComponent {
+export default class AdministradorUsuariosComponent {
 
 }
