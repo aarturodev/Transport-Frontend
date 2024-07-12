@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { LoginService } from '../../../core/services/login.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,8 +11,15 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class SidebarComponent {
 
-  constructor(private router : Router) {
+ // inyectamos el Router y obtenemos el usuario de la URL
+  private LoginService = inject(LoginService);
+  private router = inject(Router);
+  rol: string = this.router.url.split('/')[2];
+  token = localStorage.getItem('access-token');
+
+  // función para cerrar sesión
+  logout(){
+    this.LoginService.logout();
   }
-  usuario: string = this.router.url.split('/')[2];
 
 }

@@ -1,54 +1,54 @@
 <aside class="text-xs flex flex-col justify-around font-light shadow h-screen border-r w-76 uppercase">
   <h1 class="text-xl font-bold text-center capitalize ">Transporte Público</h1>
   <div class=" mx-2">
-    <a routerLink="{{usuario}}/Expedientes" routerLinkActive="bg-[#bed000] text-white"
+    <a routerLink="{{rol}}/Expedientes" routerLinkActive="bg-[#bed000] text-white"
       class="block  px-2 py-3 shadow hover:bg-[#3535349a] hover:text-white">Expedientes</a>
 
-    <a routerLink="{{usuario}}/Apertura" routerLinkActive="bg-[#bed000] text-white"
+    <a routerLink="{{rol}}/Apertura" routerLinkActive="bg-[#bed000] text-white"
       class="block px-2 py-3 shadow hover:bg-[#3535349a] hover:text-white">Apertura</a>
 
-    <a routerLink="{{usuario}}/Inhibitorio" routerLinkActive="bg-[#bed000] text-white"
+    <a routerLink="{{rol}}/Inhibitorio" routerLinkActive="bg-[#bed000] text-white"
       class="block px-2 py-3 shadow hover:bg-[#3535349a] hover:text-white">Inhibitorio</a>
 
-    <a routerLink="{{usuario}}/Pruebas" routerLinkActive="bg-[#bed000] text-white"
+    <a routerLink="{{rol}}/Pruebas" routerLinkActive="bg-[#bed000] text-white"
       class="block px-2 py-3 shadow hover:bg-[#3535349a] hover:text-white">Pruebas</a>
 
-    <a routerLink="{{usuario}}/Aceptacion-cargos" routerLinkActive="bg-[#bed000] text-white"
+    <a routerLink="{{rol}}/Aceptacion-cargos" routerLinkActive="bg-[#bed000] text-white"
       class="block px-2 py-3 shadow hover:bg-[#3535349a] hover:text-white">Aceptacion de cargos</a>
 
-    <a routerLink="{{usuario}}/Fallo" routerLinkActive="bg-[#bed000] text-white"
+    <a routerLink="{{rol}}/Fallo" routerLinkActive="bg-[#bed000] text-white"
       class="block px-2 py-3 shadow hover:bg-[#3535349a] hover:text-white">Fallo</a>
 
-    <a routerLink="{{usuario}}/Recurso-primera-instancia" routerLinkActive="bg-[#bed000] text-white"
+    <a routerLink="{{rol}}/Recurso-primera-instancia" routerLinkActive="bg-[#bed000] text-white"
       class="block px-2 py-3 shadow hover:bg-[#3535349a] hover:text-white">Recursos de Primera Instancia</a>
 
-    <a routerLink="{{usuario}}/Recurso-segunda-instancia" routerLinkActive="bg-[#bed000] text-white"
+    <a routerLink="{{rol}}/Recurso-segunda-instancia" routerLinkActive="bg-[#bed000] text-white"
       class="block px-2 py-3 shadow hover:bg-[#3535349a] hover:text-white">Recursos de Segunda Instancia</a>
 
-    <a routerLink="{{usuario}}/Recurso-queja-revocatoria-directa" routerLinkActive="bg-[#bed000] text-white"
+    <a routerLink="{{rol}}/Recurso-queja-revocatoria-directa" routerLinkActive="bg-[#bed000] text-white"
       class="block px-2 py-3 shadow hover:bg-[#3535349a] hover:text-white">Recurso de queja o revocatoria
       directa</a>
 
-    <a routerLink="{{usuario}}/Ejecutoria" routerLinkActive="bg-[#bed000] text-white"
+    <a routerLink="{{rol}}/Ejecutoria" routerLinkActive="bg-[#bed000] text-white"
       class="block px-2 py-3 shadow hover:bg-[#3535349a] hover:text-white">Ejecutoria</a>
 
-    <a routerLink="{{usuario}}/Gestion-cobro" routerLinkActive="bg-[#bed000] text-white"
+    <a routerLink="{{rol}}/Gestion-cobro" routerLinkActive="bg-[#bed000] text-white"
       class="block px-2 py-3 shadow hover:bg-[#3535349a] hover:text-white">Gestión de cobro</a>
 
-    <a routerLink="{{usuario}}/Ajuste-derecho-aclaratorio" routerLinkActive="bg-[#bed000] text-white"
+    <a routerLink="{{rol}}/Ajuste-derecho-aclaratorio" routerLinkActive="bg-[#bed000] text-white"
       class="block px-2 py-3 shadow hover:bg-[#3535349a] hover:text-white">Ajuste en Derecho Aclaratorio</a>
 
-    <a routerLink="{{usuario}}/Estado" routerLinkActive="bg-[#bed000] text-white"
+    <a routerLink="{{rol}}/Estado" routerLinkActive="bg-[#bed000] text-white"
       class="block px-2 py-3 shadow hover:bg-[#3535349a] hover:text-white">Estado</a>
 
-    <a routerLink="{{usuario}}/Asignacion" routerLinkActive="bg-[#bed000] text-white"
+    <a routerLink="{{rol}}/Asignacion" routerLinkActive="bg-[#bed000] text-white"
       class="block px-2 py-3 shadow hover:bg-[#3535349a] hover:text-white">Asignado</a>
 
-    <a routerLink="{{usuario}}/Administrador-usuarios" routerLinkActive="bg-[#bed000] text-white"
+    <a routerLink="{{rol}}/Administrador-usuarios" routerLinkActive="bg-[#bed000] text-white"
       class="block px-2 py-3 shadow hover:bg-[#3535349a] hover:text-white">Usuarios</a>
 
   </div>
-  <a
+  <a (click)="logout()"
     class="flex gap-2 items-center text-xm justify-start mx-2 px-4 py-2 shadow lowercase hover:text-rose-500 cursor-pointer text-center font-bold">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5"
       stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">

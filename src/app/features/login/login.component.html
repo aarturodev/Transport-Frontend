@@ -8,7 +8,7 @@
           class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
           Iniciar sesión
         </h1>
-
+        @if(message){
         <div class="flex items-center">
           <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
             fill="currentColor" viewBox="0 0 20 20">
@@ -17,13 +17,15 @@
           </svg>
           <span class="font-medium text-red-600">Correo o contraseña invalida</span>
         </div>
+        }
+
         <form class="space-y-4 md:space-y-6" [formGroup]="formGroup" (ngSubmit)="login()">
           <div>
             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo
               electronico</label>
-            <input type="email" formControlName="email"
+            <input type="email" formControlName="username"
               class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="name@company.com" required="">
+              placeholder="anderson@gmail.com" required="">
           </div>
           <div>
             <label for="password"
