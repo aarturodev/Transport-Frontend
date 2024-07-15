@@ -10,7 +10,8 @@ export const AuthenticatedGuard: CanActivateFn = (route, state) => {
 
   // validamos si el usuario está autenticado
   if(authService.isAutenticated()){
-   return router.navigate(['/dashboard/Admin']);
+    const role = authService.getRole();
+   return router.navigate(['/dashboard/'+role]);
   }
   return true
 };

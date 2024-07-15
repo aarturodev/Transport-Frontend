@@ -14,8 +14,8 @@ export class SidebarComponent {
  // inyectamos el Router y obtenemos el usuario de la URL
   private LoginService = inject(LoginService);
   private router = inject(Router);
-  rol: string = this.router.url.split('/')[2];
-  token = localStorage.getItem('access-token');
+
+  Rol = this.LoginService.getRole();
 
   // función para cerrar sesión
   logout(){

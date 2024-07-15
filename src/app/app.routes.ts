@@ -1,6 +1,7 @@
+import { AuthenticatedGuard } from '@core/guards/Authenticated.guard';
 import { Routes } from '@angular/router';
 import { AuthGuard } from '@core/guards/Auth.guard';
-import { AuthenticatedGuard } from '@core/guards/authenticated.guard';
+import { AdminGuard } from '@core/guards/Admin.guard';
 
 export const routes: Routes = [
   {
@@ -25,7 +26,17 @@ export const routes: Routes = [
         children: [
           {
             path: 'Expedientes',
-            loadComponent: ()=> import('@features/admin-dashboard/components/expediente/expediente.component')
+            loadComponent: ()=> import('@features/admin-dashboard/components/expediente/expediente.component'),
+            children: [
+              {
+                path: 'Nuevo',
+                loadComponent: ()=> import('@features/admin-dashboard/components/expediente/components/crear-expediente/crear-expediente.component')
+              },
+              {
+                path: 'Buscar',
+                loadComponent: ()=> import('@features/admin-dashboard/components/expediente/components/tabla/tabla.component')
+              },
+            ]
           },
           {
             path: 'Apertura',
@@ -88,7 +99,8 @@ export const routes: Routes = [
             redirectTo: 'Expedientes',
             pathMatch: 'full',
           }
-        ]
+        ],
+        canActivate: [AdminGuard]
       },
       {
         path: 'Editor',
@@ -108,7 +120,8 @@ export const routes: Routes = [
             redirectTo: 'Expedientes',
             pathMatch: 'full'
           }
-        ]
+        ],
+        canActivate: [AdminGuard]
       },
       {
         path: 'Viewer',
@@ -128,11 +141,11 @@ export const routes: Routes = [
             redirectTo: 'Expedientes',
             pathMatch: 'full'
           }
-        ]
+        ],
+        canActivate: [AdminGuard]
       },
     ],
     canActivate: [AuthGuard]
-
   },
   {
     path: '**',

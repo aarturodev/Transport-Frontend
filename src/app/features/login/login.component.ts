@@ -32,14 +32,8 @@ export default class LoginComponent {
 
     this.http.login(this.formGroup.value).subscribe({
       next: (res) => {
-        console.log(res);
-        if(res.user.Rol === 1){
-          this.router.navigate(['/dashboard/Admin']);
-        }else if(res.username === 'viewer'){
-          this.router.navigate(['/dashboard/Viewer']);
-        }else if(res.username === 'editor'){
-          this.router.navigate(['/dashboard/Editor']);
-        }
+        this.router.navigate(['/dashboard/'+res.user.Rol]);
+
         this.isLoading = false;
         this.message = false;
         this.formGroup.reset();

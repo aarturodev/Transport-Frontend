@@ -1,12 +1,12 @@
-<div class="flex p-4 w-full justify-around items-center">
-  <button type="button"
-    class="relative px-3 py-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-[#bed000] focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Crear
-    Expediente</button>
-  <form class="flex items-center w-72">
+<div class="sticky top-0 w-full bg-white flex justify-around p-4 items-center ">
+  <button type="button" routerLink="Nuevo"
+    class="relative px-10 py-2.5 text-xl font-medium text-gray-500 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-[#3535349a] focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Crear
+    expediente</button>
+  <form class="flex max-w-96 gap-2" [formGroup]="form" (ngSubmit)="buscarExpediente()">
     <label for="simple-search" class="sr-only">Search</label>
     <div class="relative w-full h-full">
       <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50"
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" stroke-width="2" stroke="#3535349a"
           fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
           <path d="M4.53 17.05l6.15 -11.72h-.02c.38 -.74 1.28 -1.02 2.01 -.63c.26 .14 .48 .36 .62 .62l1.06 2.01" />
@@ -15,12 +15,12 @@
           <path d="M4.57 17.18l10.93 -10.68" />
         </svg>
       </div>
-      <input type="text" id="simple-search"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Buscar expediente" required />
+      <input type="text" id="simple-search" formControlName="expediente"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block max-w-50 ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Buscar expediente" />
     </div>
-    <button type="submit"
-      class="p-2.5 ms-2 text-sm font-medium text-white bg-[#bed000] rounded-lg border  hover:bg-[#3535349a] focus:outline-none ">
+    <button type="submit" [disabled]="form.invalid"
+      class="p-3  text-sm font-medium text-white bg-[#bed000] rounded-lg border  hover:bg-[#3535349a] focus:outline-none ">
       <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
           d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
@@ -29,3 +29,4 @@
     </button>
   </form>
 </div>
+<router-outlet></router-outlet>
