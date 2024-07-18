@@ -1,66 +1,66 @@
 import { HttpClient} from '@angular/common/http';
+import { UrlCodec } from '@angular/common/upgrade';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap} from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private Url = 'http://localhost:3000/login';
+  private apiUrl = 'http://localhost:3000';
   private tokenKey = 'access-token';
-  private refreshTokenKey = 'refresh-token';
+
+  private _isRefreshing = false;
 
   private http = inject(HttpClient)
   private router = inject(Router)
 
-  login(credenciales: any): Observable<any>{
-    return this.http.post<any>(this.Url,credenciales ).pipe(
-      tap((res) => {
-        if(res.token){
-          this.setToken(this.tokenKey, res.token);
-          this.setToken(this.refreshTokenKey, res.refreshToken);
-        }
-      }),
-    )
+  login(credentials: any){
+    return this.http.post<any>(`${this.apiUrl}/login`, credentials, { withCredentials: true }).pipe(
+      tap(response => {
+        const token = response.token;
+        this.setToken(token);
+      })
+    );
   }
 
-  private setToken(token: string, key: string): void{
-    localStorage.setItem(token, key);
+  set isRefreshing(value){
+    this._isRefreshing = value;
+  }
+  get isRefreshing(){
+    return this._isRefreshing;
   }
 
-  private getToken(): string | null{
-    return localStorage.getItem(this.tokenKey);
-  }
+  setToken(token: string) {localStorage.setItem(this.tokenKey, token);}
 
-  getRole(): string | null{
+  getToken(): string | null {return localStorage.getItem(this.tokenKey);}
+
+  getRole(): string | null {
     const token = this.getToken();
-    if(!token){
-      return null;
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.user.Rol;
     }
-
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    return payload.user.Rol;
+    return null;
   }
 
-  isAutenticated(): boolean {
+  isAuthenticated(): boolean {
     const token = this.getToken();
-    if(!token){
-      return false;
-    }
-
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    const exp = payload.exp * 1000 // convert to milliseconds
-
-    return Date.now() < exp;
+    if (!token) return false;
+    return true;
   }
 
-  logout(): void{
+  refresToken(){
+    return this.http.get<any>(`${this.apiUrl}/refresh`, { withCredentials: true});
+  }
+
+
+  logout(): void {
     localStorage.removeItem(this.tokenKey);
-    localStorage.removeItem(this.refreshTokenKey);
     this.router.navigate(['/login']);
   }
-
 
 }

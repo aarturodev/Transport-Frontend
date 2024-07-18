@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { Conducta, ModalidadServicio, MotivoInvestigacion, SujetoSancionable, TipoPersonaNatural, TipoServicio } from '@core/models/Expediente';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,28 +15,29 @@ export class ExpedienteService {
 
   // informacion de los expedientes
 
-  getMotivoInvestigacion(){
-    return this.http.get(`${this.Url}/motivo-investigacion`);
+  getMotivoInvestigacion(): Observable<MotivoInvestigacion[]>{
+    return this.http.get<MotivoInvestigacion[]>(`${this.Url}/motivo-investigacion`);
   }
 
-  getConducta(){
-    return this.http.get(`${this.Url}/conducta`);
+  getConducta(): Observable<Conducta[]>{
+    return this.http.get<Conducta[]>(`${this.Url}/conducta`);
+
   }
 
-  getModalidadServicio(){
-    return this.http.get(`${this.Url}/modalidad-servicio`);
+  getModalidadServicio(): Observable<ModalidadServicio[]>{
+    return this.http.get<ModalidadServicio[]>(`${this.Url}/modalidad-servicio`);
   }
 
-  getTipoServicio(){
-    return this.http.get(`${this.Url}/tipo-servicio`);
+  getTipoServicio(): Observable<TipoServicio[]>{
+    return this.http.get<TipoServicio[]>(`${this.Url}/tipo-servicio`);
   }
 
-  getSujetoSancionable(){
-    return this.http.get(`${this.Url}/sujeto-sancionable`);
+  getSujetoSancionable(): Observable<SujetoSancionable[]>{
+    return this.http.get<SujetoSancionable[]>(`${this.Url}/sujeto-sancionable`);
   }
 
-  getTipoPersonaNatural(){
-    return this.http.get(`${this.Url}/tipo-persona-natural`);
+  getTipoPersonaNatural(): Observable<TipoPersonaNatural[]>{
+    return this.http.get<TipoPersonaNatural[]>(`${this.Url}/tipo-persona-natural`);
   }
 
 }

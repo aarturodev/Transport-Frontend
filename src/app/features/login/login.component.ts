@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginService } from '../../core/services/login.service';
 import { Router } from '@angular/router';
+import { iif } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,19 @@ export default class LoginComponent {
 
     this.http.login(this.formGroup.value).subscribe({
       next: (res) => {
-        this.router.navigate(['/dashboard/'+res.user.Rol]);
+        const Rol = this.http.getRole();
+        console.log("este es el rol: ",Rol);
+        if(Rol === 'Admin'){
+
+          this.router.navigate(['/Admin']);
+        }
+        else if(Rol === 'Viewer'){
+
+          this.router.navigate(['/Viewer']);
+        }
+        if(Rol === 'Editor'){
+          this.router.navigate(['/Editor']);
+        }
 
         this.isLoading = false;
         this.message = false;

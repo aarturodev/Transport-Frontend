@@ -1,6 +1,7 @@
 import { inject } from '@angular/core';
 import { Router, type CanActivateFn } from '@angular/router';
 import { LoginService } from '@core/services/login.service';
+import { catchError, map } from 'rxjs';
 
 export const AuthGuard: CanActivateFn = (route, state) => {
 
@@ -8,13 +9,12 @@ export const AuthGuard: CanActivateFn = (route, state) => {
   const authService= inject(LoginService);
   const router = inject(Router);
 
-  // validamos si el usuario está autenticado
-  if(authService.isAutenticated()){
+  const token = authService.getToken();
 
-    const role = authService.getRole();
-    return true;
-
-  }else{
+  if(!token){
     return router.navigate(['/login']);
   }
+
+
+  return true
 };

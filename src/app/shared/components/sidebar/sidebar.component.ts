@@ -12,14 +12,18 @@ import { LoginService } from '../../../core/services/login.service';
 export class SidebarComponent {
 
  // inyectamos el Router y obtenemos el usuario de la URL
-  private LoginService = inject(LoginService);
-  private router = inject(Router);
+  private loginService = inject(LoginService);
 
-  Rol = this.LoginService.getRole();
+  Rol = this.loginService.getRole();
+  constructor(private router: Router) {
+    console.log("este es el rol: ",this.Rol);
+
+  }
+
 
   // función para cerrar sesión
   logout(){
-    this.LoginService.logout();
+    this.loginService.logout();
   }
 
 }

@@ -9,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export default class TablaComponent {
 
+
+  expediente: any = {};
 }

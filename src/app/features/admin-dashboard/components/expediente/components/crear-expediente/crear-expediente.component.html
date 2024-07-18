@@ -1,114 +1,116 @@
 <section class="max-w-4xl p-6 mx-auto my-10 bg-white rounded-md shadow-md dark:bg-gray-800">
-  <h2 class="text-lg mb-4 font-semibold text-gray-700 capitalize dark:text-white">Ingresa la informacion del expediente
+  <h2 class="text-lg mb-4 font-semibold text-gray-600 capitalize dark:text-white">Ingresa la informacion del expediente
   </h2>
 
-  <form>
+  <form [formGroup]="form" (ngSubmit)="crearExpediente()">
     <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
       <div>
-        <label class="text-gray-900 dark:text-gray-200" for="username">Número de Expediente</label>
-        <input id="username" type="text"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+        <label class="text-gray-900 dark:text-gray-200" for="numExpe">Número de Expediente</label>
+        <input id="numExpe" type="text" formControlName="Numero_Expediente"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
       </div>
 
       <div>
-        <label class="text-gray-900 dark:text-gray-200" for="username">Motivo de investigación</label>
-        <select id="countries"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-          @for (item of motivoInvestigacion; track item.Id) {
+        <label class="text-gray-900 dark:text-gray-200" for="motInv">Motivo de investigación</label>
+        <select id="motInv" formControlName="Motivo_Investigacion_Id"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+          <option value="null"></option>
+          @for (item of motivoInvestigacion; track $index) {
+          <option value={{item.Id}}>{{item.Descripcion}}</option>
+          }
+        </select>
+      </div>
+      <div>
+        <label class="text-gray-900 dark:text-gray-200" for="numInfra">Número de informe de infracción /
+          Memorando</label>
+        <input id="numInfra" type="text" formControlName="Numero_Informe_Infraccion"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+      </div>
+
+      <div>
+        <label class="text-gray-900 dark:text-gray-200" for="fechH">Fecha de los hechos</label>
+        <input id="fechH" type="date" formControlName="Fecha_Hechos"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+      </div>
+      <div>
+        <label class="text-gray-900 dark:text-gray-200" for="cadu">Caducidad</label>
+        <input id="cadu" type="date" formControlName="Fecha_Caducidad"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+      </div>
+
+      <div>
+        <label class="text-gray-900 dark:text-gray-200" for="placa">Placa</label>
+        <input id="placa" type="text" formControlName="Placa"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+      </div>
+      <div>
+        <label class="text-gray-900 dark:text-gray-200" for="conduc">Conducta (clase de infracción)</label>
+        <select id="conduc" formControlName="Clase_Infraccion_Id"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+          <option value="null"></option>
+          @for (item of conducta; track $index) {
           <option value="{{item.Id}}">{{item.Descripcion}}</option>
           }
         </select>
       </div>
       <div>
-        <label class="text-gray-900 dark:text-gray-200" for="username">Número de informe de infracción /
-          Memorando</label>
-        <input id="username" type="text"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-      </div>
-
-      <div>
-        <label class="text-gray-900 dark:text-gray-200" for="emailAddress">Fecha de los hechos</label>
-        <input id="emailAddress" type="date"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-      </div>
-      <div>
-        <label class="text-gray-900 dark:text-gray-200" for="username">Caducidad</label>
-        <input id="username" type="date"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-      </div>
-
-      <div>
-        <label class="text-gray-900 dark:text-gray-200" for="emailAddress">Placa</label>
-        <input id="emailAddress" type="text"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-      </div>
-      <div>
-        <label class="text-gray-900 dark:text-gray-200" for="username">Conducta (clase de infracción)</label>
-        <select id="countries"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-          <option selected>Choose a country</option>
-          <option value="US">United States</option>
-          <option value="CA">Canada</option>
-          <option value="FR">France</option>
-          <option value="DE">Germany</option>
-        </select>
-      </div>
-      <div>
-        <label class="text-gray-900 dark:text-gray-200" for="username">Modalidad de servicio</label>
-        <select id="countries"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-          <option selected>Choose a country</option>
-          <option value="US">United States</option>
-          <option value="CA">Canada</option>
-          <option value="FR">France</option>
-          <option value="DE">Germany</option>
+        <label class="text-gray-900 dark:text-gray-200" for="modali">Modalidad de servicio</label>
+        <select id="modali" formControlName="Modalidad_Servicio_Id"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+          <option value="null"></option>
+          @for (item of modalidadServicio; track $index) {
+          <option value="{{item.Id}}">{{item.Descripcion}}</option>
+          }
         </select>
       </div>
 
       <div>
-        <label class="text-gray-900 dark:text-gray-200" for="username">Tipo de servicio</label>
-        <select id="countries"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-          <option selected>Choose a country</option>
-          <option value="US">United States</option>
-          <option value="CA">Canada</option>
-          <option value="FR">France</option>
-          <option value="DE">Germany</option>
+        <label class="text-gray-900 dark:text-gray-200" for="tipS">Tipo de servicio</label>
+        <select id="tipS" formControlName="Tipo_Servicio_Id"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+          <option value="null"></option>
+          @for (item of tipoServicio; track $index) {
+          <option value="{{item.Id}}">{{item.Descripcion}}</option>
+          }
         </select>
       </div>
 
       <div>
-        <label class="text-gray-900 dark:text-gray-200" for="username">Sujeto sancionable</label>
-        <select id="countries"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-          <option selected>Choose a country</option>
-          <option value="US">United States</option>
+        <label class="text-gray-900 dark:text-gray-200" for="sujS">Sujeto sancionable</label>
+        <select id="sujS" formControlName="Sujeto_Sancionable_Id"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+          <option value="null"></option>
+          @for (item of sujetoSancionable; track $index) {
+          <option value="{{item.Id}}">{{item.Descripcion}}</option>
+          }
         </select>
       </div>
       <div>
-        <label class="text-gray-900 dark:text-gray-200" for="username">Tipo de persona natural</label>
-        <select id="countries"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
-          <option selected>Choose a country</option>
-          <option value="US">United States</option>
+        <label class="text-gray-900 dark:text-gray-200" for="tipPN">Tipo de persona natural</label>
+        <select id="tipPN" formControlName="Tipo_Persona_Natural_Id"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+          <option value="null"></option>
+          @for (item of tipoPersonaNatural; track $index) {
+          <option value="{{item.Id}}">{{item.Descripcion}}</option>
+          }
         </select>
       </div>
 
       <div>
-        <label class="text-gray-900 dark:text-gray-200" for="emailAddress">Nombre de la persona natural</label>
-        <input id="emailAddress" type="text"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+        <label class="text-gray-900 dark:text-gray-200" for="nomPN">Nombre de la persona natural</label>
+        <input id="nomPN" type="text" formControlName="Persona_Natural_Id"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
       </div>
       <div>
-        <label class="text-gray-900 dark:text-gray-200" for="emailAddress">Nit o cedula</label>
-        <input id="emailAddress" type="text"
-          class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+        <label class="text-gray-900 dark:text-gray-200" for="nitC">Nit o cedula</label>
+        <input id="nitC" type="text"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
       </div>
 
     </div>
 
     <div class="flex justify-end mt-6">
-      <button
+      <button [disabled]="!form.valid" [class]="!form.valid ? 'cursor-not-allowed' : ''"
         class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Crear
         Expediente</button>
     </div>

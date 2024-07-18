@@ -30,7 +30,12 @@ export default class DashboardComponent{
   service = inject(LoginService);
 
   // obtenemos el rol del usuario
-  Role = this.service.getRole();
+  Role = this.service.Role;
+
+  constructor(){
+    console.log("este es el rol: ",this.Role);
+
+  }
 
 
 }

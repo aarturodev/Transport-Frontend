@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import TablaComponent from "@features/admin-dashboard/components/expediente/components/tabla/tabla.component";
+import { LoginService } from '@core/services/login.service';
 
 @Component({
   selector: 'app-expediente',
@@ -17,11 +18,13 @@ export default class ExpedienteComponent {
   });
 
   router = inject(Router);
+  authService = inject(LoginService);
+
 
   buscarExpediente(){
     console.log('Buscando expediente...');
     console.log(this.form.value);
-    this.router.navigate(['/Tabla']);
+
   }
 
 }
