@@ -10,12 +10,12 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
 
   return next(req).pipe(
+    
     catchError((error: HttpErrorResponse) => {
 
       if (error.status === HttpStatusCode.Unauthorized) {
 
         if (loginService.isRefreshing) {
-          // Si ya se está refrescando el token, no hacemos nada
           return EMPTY;
         }
 
@@ -30,9 +30,8 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           }),
 
           concatMap((response) => {
-            // Actualizamos el token
+
             loginService.setToken(response.token);
-            console.log("************* Token Actualizado *************");
 
             const accessToken = loginService.getToken();
 
@@ -46,7 +45,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           }),
 
           catchError(() => {
-            console.log("********** Error en el Refresh Token **************");
+            loginService.logout();
             router.navigateByUrl("/");
             return EMPTY;
           })
