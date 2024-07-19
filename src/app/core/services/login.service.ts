@@ -37,6 +37,7 @@ export class LoginService {
       tap(response => {
         const token = response.token;
         this.setToken(token);
+        this.getUser();
       })
     );
   }
@@ -47,9 +48,9 @@ export class LoginService {
    */
   logout(): void {
     this.http.post<any>(`${this.apiUrl}/logout`, {},{ withCredentials: true }).subscribe((res)=>{
-      console.log(res.message);
-
       localStorage.removeItem(this.tokenKey);
+      localStorage.removeItem("user");
+      localStorage.removeItem("expediente");
       this.router.navigate(['/login'])
     });
   }
@@ -88,6 +89,20 @@ export class LoginService {
     if (token) {
       const payload = JSON.parse(atob(token.split('.')[1]));
       return payload.user.Rol;
+    }
+    return null;
+  }
+  /**
+   * Funcion que permite obtener el Id del usuario
+   * @returns id del usuario
+   * @returns null si no hay token
+   */
+  getUser(): string | null {
+    const token = this.getToken();
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      localStorage.setItem("user", payload.user.Id);
+      return localStorage.getItem("user");
     }
     return null;
   }

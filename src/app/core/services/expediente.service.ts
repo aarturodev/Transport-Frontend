@@ -1,7 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Conducta, ModalidadServicio, MotivoInvestigacion, SujetoSancionable, TipoPersonaNatural, TipoServicio } from '@core/models/Expediente';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, Observable, tap, throwError } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,10 @@ export class ExpedienteService {
 
   private Url = 'http://localhost:3000/expediente';
   private http = inject(HttpClient)
+  private router = inject(Router)
+
+
+
 
 
   /**
@@ -60,5 +66,58 @@ export class ExpedienteService {
   getTipoPersonaNatural(): Observable<TipoPersonaNatural[]>{
     return this.http.get<TipoPersonaNatural[]>(`${this.Url}/tipo-persona-natural`);
   }
+
+  crearExpediente(expediente: any): Observable<any>{
+    return this.http.post<any>(`${this.Url}/crear-expediente`, expediente,{withCredentials:true}).pipe(
+      tap((res)=>{
+        this.changeData(res.result)
+        localStorage.setItem("expediente", res.result);
+        this.router.navigate(['/']);
+      })
+    );
+  }
+
+  getDate(): string{
+    const date = new Date();
+    const day = String(date.getDate()).padStart(2, '0'); // Añadir ceros a la izquierda si es necesario
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Los meses empiezan desde 0
+    const year = date.getFullYear();
+
+    return `${year}-${month}-${day}`;
+  }
+
+  getExpedienteById(expediente:number):Observable<any>{
+    return this.http.get<any>(`${this.Url}/${expediente}`).pipe(
+      catchError((error: HttpErrorResponse)=>{
+        if(error.status === 404){
+          alert("el expediente no existe!")
+        }
+        return EMPTY;
+      })
+    )
+  }
+
+  buscarExpediente(expediente:string):Observable<any>{
+    return this.http.get<any>(`${this.Url}/${expediente}`).pipe(
+      catchError((error: HttpErrorResponse)=>{
+        if(error.status === 404){
+          alert("el expediente no existe!")
+        }
+        return EMPTY;
+      })
+    )
+  }
+
+  getExpediente(){
+    return localStorage.getItem("expediente")
+  }
+
+  private dataSource = new BehaviorSubject<string>("");
+  expediente = this.dataSource.asObservable();
+
+  changeData(data: string) {
+    this.dataSource.next(data);
+  }
+
 
 }
