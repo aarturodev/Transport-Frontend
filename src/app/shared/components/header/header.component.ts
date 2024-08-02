@@ -22,17 +22,17 @@ export class HeaderComponent{
   authService = inject(LoginService);
   expedienteService = inject(ExpedienteService)
 
+  ruta = this.router.url;
+
+
 
   buscarExpediente(){
 
     if(this.form.value.expediente){
+      this.expedienteService.changeData(this.form.value.expediente);
 
-        const expediente = this.form.value.expediente
-        this.expedienteService.changeData(expediente);
-        localStorage.setItem("expediente", this.form.value.expediente)
-        this.router.navigate(['/expedientes']);
+      this.router.navigate(['Admin/Expedientes/Tabla']);
     }
-    console.log(this.form.value);
 
   }
 

@@ -1,1 +1,71 @@
-<p>recurso-segunda-instancia works!</p>
+<app-header></app-header>
+<section class="max-w-full min-h-80 p-6 mt-5 mx-4 bg-white shadow-md">
+  <h2 class="text-lg mb-4 font-semibold text-[#000000e3] uppercase dark:text-white">
+    <span class="text-[#0000006c]">
+      {{expediente.Numero_Expediente}}
+    </span>
+  </h2>
+
+  <form [formGroup]="form" (ngSubmit)="actualizarRecursoSegundaInstancia()">
+    <div class="grid grid-cols-2 gap-6 mt-4 sm:grid-cols-3">
+
+      <div>
+        <label class="text-gray-900 font-light text-sm" for="fechH">Fecha envio Segunda Instancia</label>
+        <input id="fechH" type="date" formControlName="Fecha_Envio_Segunda_Inst"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+      </div>
+      <div>
+        <label class="text-gray-900 font-light text-sm" for="numInfra">N° Memorando envio</label>
+        <input id="numInfra" type="text" formControlName="No_Memorando_Envio"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+      </div>
+      <div>
+        <label class="text-gray-900 font-light text-sm" for="numInfra">N° Resolucion Rec Apelacion</label>
+        <input id="numInfra" type="text" formControlName="No_Resolucion_Recurso_Apelacion"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+      </div>
+      <div>
+        <label class="text-gray-900 font-light text-sm" for="fechH">Fecha Resolucion Rec Apelacion</label>
+        <input id="fechH" type="date" formControlName="Fecha_Resolucion_Rec_Apel"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+      </div>
+      <div>
+        <label class="text-gray-900 font-light text-sm" for="fechH">Fecha Notificacion Resolucion Rec Apelacion</label>
+        <input id="fechH" type="date" formControlName="Fecha_Notificacion_Resolucion_Rec_Apel"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+      </div>
+      <div>
+        <label class="text-gray-900 font-light text-sm" for="motInv">Desicion segunda instancia</label>
+        <select id="motInv" formControlName="Decision_Seg_Instatancia_Id"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+          <option [ngValue]="null"></option>
+          @for (item of decisionSegundaInstancia; track $index) {
+          <option value={{item.Id}}>{{item.Descripcion}}</option>
+          }
+        </select>
+      </div>
+      <div>
+        <label class="text-gray-900 font-light text-sm" for="fechH">Fecha de Devolucion</label>
+        <input id="fechH" type="date" formControlName="Fecha_Devolucion"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+      </div>
+      <div>
+        <label class="text-gray-900 font-light text-sm" for="numInfra">Valor Sancion modificado</label>
+        <input id="numInfra" type="text" formControlName="Valor_Sancion_Modificado"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+      </div>
+      <div>
+        <label class="text-gray-900 font-light text-sm" for="numInfra">N° Resolución Silencio Administrativo</label>
+        <input id="numInfra" type="text" formControlName="No_Resol_Silencio_Administrativo"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+      </div>
+
+    </div>
+    <div class="flex justify-end mt-6">
+      <button [disabled]="!form.valid" [class]="!form.valid ? 'cursor-not-allowed' : ''"
+        class="px-8 py-2.5 leading-5 rounded text-white transition-colors duration-300 transform bg-[#7fb91adc] hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+        Actualizar
+      </button>
+    </div>
+  </form>
+</section>

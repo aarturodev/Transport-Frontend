@@ -1,8 +1,12 @@
 <div class="w-full bg-[#ffffff] flex justify-around p-2 items-center ">
-  <button type="button" routerLink="Nuevo"
+  @if(ruta.includes('Expedientes')){
+  <button type="button" routerLink="Crear"
     class="relative px-10 py-2.5 text-xl min-w-40 font-normal text-gray-500 focus:outline-none bg-white rounded border border-gray-200 hover:bg-gray-100 hover:text-[#3535349a] focus:z-10 focus:ring-4 focus:ring-gray-100  ">
     Crear expediente
   </button>
+  }@else {
+  <span></span>
+  }
   <form class="flex max-w-96 gap-2" [formGroup]="form" (ngSubmit)="buscarExpediente()">
     <label for="simple-search" class="sr-only">Search</label>
     <div class="relative w-full h-full">

@@ -1,8 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Conducta, ModalidadServicio, MotivoInvestigacion, SujetoSancionable, TipoPersonaNatural, TipoServicio } from '@core/models/Expediente';
 import { ExpedienteService } from '@core/services/expediente.service';
 import { LoginService } from '@core/services/login.service';
+import { concatMap, EMPTY, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-tabla',
@@ -11,13 +13,13 @@ import { LoginService } from '@core/services/login.service';
   templateUrl: './tabla.component.html',
   styleUrl: './tabla.component.css'
 })
-export default class TablaComponent implements OnInit {
+export default class TablaComponent implements OnInit{
 
 
   private http = inject(ExpedienteService)
   private expedienteService = inject(ExpedienteService)
   private loginService = inject(LoginService);
-
+  private router = inject(Router);
 
   motivoInvestigacion:MotivoInvestigacion[] = [];
   conducta:Conducta[] = [];
@@ -27,32 +29,27 @@ export default class TablaComponent implements OnInit {
   tipoPersonaNatural:TipoPersonaNatural[] = [];
   expediente:any = {}
 
+
+
   ngOnInit(): void {
+    const expediente = this.expedienteService.changeData(localStorage.getItem('expediente') || '');
+    this.expedienteService.expediente$.subscribe((res:any)=>{
+      this.expedienteService.buscarExpediente(res).subscribe((res:any)=>{
 
-    const expediente = this.expedienteService.getExpediente()
-    console.log("logrado: ", expediente)
+        if(res.result.Fecha_Hechos !== null){
+           res.result.Fecha_Hechos = new Date(res.result.Fecha_Hechos).toISOString().split('T')[0];
+        }
+        if(res.result.Fecha_Caducidad !== null){
+           res.result.Fecha_Caducidad = new Date(res.result.Fecha_Caducidad).toISOString().split('T')[0];
+        }
 
-    if(expediente && expediente !== null && expediente !== undefined){
-      this.expedienteService.changeData(expediente);
-    }
+        this.expediente = res.result;
 
-
-    this.expedienteService.expediente.subscribe({
-      next: (res)=>{
-        this.expedienteService.buscarExpediente(res).subscribe({
-          next: (res)=>{
-            this.expediente = res.result
-          },
-          error: (error)=>{
-            console.log("paso algo");
-
-          }
-        })
-      },
-      error: (error)=>{
-        alert("el expediente no existe!")
-      }
+        this.form.patchValue(this.expediente);
+      });
     })
+
+
 
   }
 
@@ -89,7 +86,6 @@ export default class TablaComponent implements OnInit {
   }
 
   form = new FormGroup({
-    Numero_Expediente : new FormControl('', Validators.required),
     Motivo_Investigacion_Id : new FormControl(null),
     Numero_Informe_Infraccion : new FormControl(null),
     Fecha_Hechos : new FormControl(null),
@@ -105,14 +101,14 @@ export default class TablaComponent implements OnInit {
 
   })
 
-  crearExpediente(){
+  actualizarExpediente(){
     if(!this.form.valid){
       console.log("el formulario no es valido");
       return
     }
 
     const Expediente = {
-      Numero_Expediente : this.form.value.Numero_Expediente,
+      Numero_Expediente : this.expediente.Numero_Expediente,
       Motivo_Investigacion_Id : this.form.value.Motivo_Investigacion_Id ? Number(this.form.value.Motivo_Investigacion_Id) : null,
       Numero_Informe_Infraccion : this.form.value.Numero_Informe_Infraccion,
       Fecha_Hechos : this.form.value.Fecha_Hechos,
@@ -125,12 +121,12 @@ export default class TablaComponent implements OnInit {
       Tipo_Persona_Natural_Id : this.form.value.Tipo_Persona_Natural_Id ? Number(this.form.value.Tipo_Persona_Natural_Id) : null,
       Identificacion: this.form.value.Identificacion ? Number(this.form.value.Identificacion) : null,
       Nombre_Persona_Natural: this.form.value.Nombre_Persona_Natural,
-      Usuario_Id : this.loginService.getUser(),
+      Usuario_Id : Number(this.loginService.getUser()),
       Ultima_Modificacion: this.http.getDate()
 
     }
 
-    this.http.crearExpediente(Expediente).subscribe()
+    this.expedienteService.actualizarExpediente(Expediente).subscribe();
 
   }
 

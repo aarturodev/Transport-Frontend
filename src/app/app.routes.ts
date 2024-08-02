@@ -28,13 +28,18 @@ export const routes: Routes = [
             loadComponent: ()=> import('@features/admin-dashboard/components/expediente/expediente.component'),
             children: [
               {
-                path: 'Nuevo',
+                path: 'Crear',
                 loadComponent: ()=> import('@features/admin-dashboard/components/expediente/components/crear-expediente/crear-expediente.component')
               },
               {
-                path: '',
+                path: 'Tabla',
                 loadComponent: ()=> import('@features/admin-dashboard/components/expediente/components/tabla/tabla.component')
               },
+              {
+                path: '',
+                redirectTo: 'Tabla',
+                pathMatch: 'full',
+              }
 
             ]
           },

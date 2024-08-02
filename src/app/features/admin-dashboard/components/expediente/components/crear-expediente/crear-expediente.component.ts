@@ -90,12 +90,13 @@ export default class CrearExpedienteComponent {
       Tipo_Persona_Natural_Id : this.form.value.Tipo_Persona_Natural_Id ? Number(this.form.value.Tipo_Persona_Natural_Id) : null,
       Identificacion: this.form.value.Identificacion ? Number(this.form.value.Identificacion) : null,
       Nombre_Persona_Natural: this.form.value.Nombre_Persona_Natural,
-      Usuario_Id : this.loginService.getUser(),
+      Usuario_Id : Number(this.loginService.getUser()),
       Ultima_Modificacion: this.http.getDate()
 
     }
 
     this.http.crearExpediente(Expediente).subscribe()
+
 
   }
 

@@ -1,1 +1,45 @@
-<p>ajuste-derecho-aclaratorio works!</p>
+<app-header></app-header>
+<section class="max-w-full min-h-80 p-6 mt-5 mx-4 bg-white shadow-md">
+  <h2 class="text-lg mb-4 font-semibold text-[#000000e3] uppercase dark:text-white">
+    <span class="text-[#0000006c]">
+      {{expediente.Numero_Expediente}}
+    </span>
+  </h2>
+
+  <form [formGroup]="form" (ngSubmit)="crearExpediente()">
+    <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+
+      <div>
+        <label class="text-gray-900 font-light text-sm" for="motInv">Tipo de Resolucion</label>
+        <select id="motInv" formControlName="Tipo_Resolucion_Id"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+          <option [ngValue]="null"></option>
+          @for (item of tipoResolucion; track $index) {
+          <option value={{item.Id}}>{{item.Descripcion}}</option>
+          }
+        </select>
+      </div>
+      <div>
+        <label class="text-gray-900 font-light text-sm" for="numInfra">No_Resolucion</label>
+        <input id="numInfra" type="text" formControlName="No_Resolucion"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+      </div>
+      <div>
+        <label class="text-gray-900 font-light text-sm" for="fechH">Fecha_Resolucion</label>
+        <input id="fechH" type="date" formControlName="Fecha_Resolucion"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+      </div>
+      <div>
+        <label class="text-gray-900 font-light text-sm" for="fechH">Fecha_Notificacion</label>
+        <input id="fechH" type="date" formControlName="Fecha_Fecha_Notificacion"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+      </div>
+    </div>
+    <div class="flex justify-end mt-6">
+      <button [disabled]="!form.valid" [class]="!form.valid ? 'cursor-not-allowed' : ''"
+        class="px-8 py-2.5 leading-5 rounded text-white transition-colors duration-300 transform bg-[#7fb91adc] hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+        Actualizar
+      </button>
+    </div>
+  </form>
+</section>
