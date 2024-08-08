@@ -126,6 +126,10 @@ export class ExpedienteService {
     )
   }
 
+  getExpedienteTabla(expediente:string):Observable<any>{
+    return this.http.get<any>(`${this.Url}/tabla/${expediente}`);
+  }
+
   actualizarExpediente(expediente: any): Observable<any> {
       return new Observable(observer => {
           Swal.fire({
@@ -629,6 +633,86 @@ export class ExpedienteService {
       });
   }
 
+  buscarEstado(expediente:string):Observable<any>{
+    return this.http.get<any>(`${this.Url}/estado/${expediente}`);
+  }
+
+  actualizarEstado(expediente: any): Observable<any> {
+      return new Observable(observer => {
+          Swal.fire({
+              title: "¿Estás seguro?",
+              text: "Estás a punto de actualizar el Estado",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Sí, actualizar!",
+              cancelButtonText: "Cancelar"
+          }).then((result: any) => {
+              if (result.isConfirmed) {
+                  this.http.patch<any>(`${this.Url}/actualizar-estado`, expediente).subscribe(
+                      res => {
+                          Swal.fire({
+                              title: 'Actualizado!',
+                              text: 'Estado actualizado con exito!',
+                              icon: 'success',
+                              showConfirmButton: false,
+                              timer: 1800
+                          });
+                          observer.next(res);
+                          observer.complete();
+                      },
+                      err => {
+                          observer.error(err);
+                      }
+                  );
+              } else {
+                  observer.complete();
+              }
+          });
+      });
+  }
+
+
+  buscarAsignacion(expediente:string):Observable<any>{
+    return this.http.get<any>(`${this.Url}/asignacion/${expediente}`);
+  }
+
+  actualizarAsignacion(expediente: any): Observable<any> {
+      return new Observable(observer => {
+          Swal.fire({
+              title: "¿Estás seguro?",
+              text: "Estás a punto de actualizar la Asignacion",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Sí, actualizar!",
+              cancelButtonText: "Cancelar"
+          }).then((result: any) => {
+              if (result.isConfirmed) {
+                  this.http.patch<any>(`${this.Url}/actualizar-asignacion`, expediente).subscribe(
+                      res => {
+                          Swal.fire({
+                              title: 'Actualizado!',
+                              text: 'Asignacion actualizado con exito!',
+                              icon: 'success',
+                              showConfirmButton: false,
+                              timer: 1800
+                          });
+                          observer.next(res);
+                          observer.complete();
+                      },
+                      err => {
+                          observer.error(err);
+                      }
+                  );
+              } else {
+                  observer.complete();
+              }
+          });
+      });
+  }
 
 
 

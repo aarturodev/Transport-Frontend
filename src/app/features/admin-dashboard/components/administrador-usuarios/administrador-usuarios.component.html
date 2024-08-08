@@ -1,1 +1,121 @@
-<p>administrador-usuarios works!</p>
+<section class="max-w-full min-h-80 p-6 mt-5 mx-4 bg-white shadow-md">
+  <div class="flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-gray-800">Administrador de usuarios</h1>
+    <button
+      class="focus:outline-none text-white bg-[#bed000] hover:bg-[#565745] focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+      type="button" (click)="toggleModal()">
+      Crear Usuario
+    </button>
+    @if(showModal){
+    <div
+      class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+      <div class="relative w-auto my-6 mx-auto max-w-6xl">
+        <!--content-->
+        <div
+          class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+          <!--header-->
+          <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+            <h3 class="text-xl font-semibold">
+              Crear Usuario
+            </h3>
+            <button
+              class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+              (click)="toggleModal()">
+              <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                ×
+              </span>
+            </button>
+          </div>
+          <!--body-->
+          <section class="max-w-full min-h-80 p-6 mx-4 bg-white">
+            <form class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+              <div>
+                <label class="text-gray-900 font-light text-sm" for="fechH">Primer Nombre</label>
+                <input id="fechH" type="text" formControlName="Primer_Nombre"
+                  class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+              </div>
+              <div>
+                <label class="text-gray-900 font-light text-sm" for="fechH">Segundo Nombre</label>
+                <input id="fechH" type="text" formControlName="Segundo_Nombre"
+                  class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+              </div>
+              <div>
+                <label class="text-gray-900 font-light text-sm" for="fechH">Primer Apellido</label>
+                <input id="fechH" type="text" formControlName="Primer_Apellido"
+                  class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+              </div>
+              <div>
+                <label class="text-gray-900 font-light text-sm" for="fechH">Segundo Apellido</label>
+                <input id="fechH" type="text" formControlName="Segundo_Apellido"
+                  class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+              </div>
+              <div>
+                <label class="text-gray-900 font-light text-sm" for="fechH">Correo</label>
+                <input id="fechH" type="text" formControlName="Correo"
+                  class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+              </div>
+              <div>
+                <label class="text-gray-900 font-light text-sm" for="fechH">Contraseña</label>
+                <input id="fechH" type="password" formControlName="Contraseña"
+                  class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+              </div>
+              <div>
+                <label class="text-gray-900 font-light text-sm" for="fechH">Rol</label>
+                <select id="fechH" formControlName="Rol"
+                  class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+                  <option value="Admin">Admin</option>
+                  <option value="User">User</option>
+                </select>
+              </div>
+            </form>
+
+          </section>
+          <!--footer-->
+          <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+            <button
+              class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              type="button" (click)="toggleModal()">
+              Cancelar
+            </button>
+            <button
+              class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              type="button" (click)="toggleModal()">
+              Crear
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+    @if(showModal){
+    <div class="opacity-25 fixed inset-0 z-40 bg-black" (click)="toggleModal()"></div>
+    }
+
+  </div>
+  <div class="mt-5">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">Nombre</th>
+          <th scope="col" class="px-6 py-3">Correo</th>
+          <th scope="col" class="px-6 py-3">Rol</th>
+          <th scope="col" class="px-6 py-3">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <td class="px-6 py-4">Anderson Marin</td>
+          <td class="px-6 py-4">andergmail.com</td>
+          <td class="px-6 py-4">Admin</td>
+          <td>
+            <button class="btn btn-primary" (click)="editar()">Editar</button>
+            <button class="btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</section>

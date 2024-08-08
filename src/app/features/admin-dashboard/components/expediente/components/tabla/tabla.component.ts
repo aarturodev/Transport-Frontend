@@ -28,6 +28,7 @@ export default class TablaComponent implements OnInit{
   sujetoSancionable:SujetoSancionable[] = [];
   tipoPersonaNatural:TipoPersonaNatural[] = [];
   expediente:any = {}
+  expedientetaabla : any = {}
 
 
 
@@ -44,9 +45,14 @@ export default class TablaComponent implements OnInit{
         }
 
         this.expediente = res.result;
-
+        console.log(this.expediente);
         this.form.patchValue(this.expediente);
       });
+
+       this.expedienteService.getExpedienteTabla(res).subscribe((res:any)=>{
+        console.log("res: ",res);
+      })
+
     })
 
 
