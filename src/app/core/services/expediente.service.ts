@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { ChangeDetectorRef, inject, Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Conducta, ModalidadServicio, MotivoInvestigacion, SujetoSancionable, TipoPersonaNatural, TipoServicio } from '@core/models/Expediente';
 import { BehaviorSubject, catchError, EMPTY, Observable, of, tap, throwError } from 'rxjs';
@@ -47,6 +47,10 @@ export class ExpedienteService {
     return this.http.get<ModalidadServicio[]>(`${this.Url}/modalidad-servicio`);
   }
 
+  getTipoEstado(): Observable<any[]>{
+    return this.http.get<any[]>(`${this.Url}/tipo-estado`)
+  }
+
   /**
    * Funcion que permite obtener los tipos de servicio
    * @returns TipoServicio[]
@@ -75,7 +79,6 @@ export class ExpedienteService {
     return this.http.post<any>(`${this.Url}/crear-expediente`, expediente,{withCredentials:true}).pipe(
       tap((res)=>{
         Swal.fire({
-          position: "top-end",
           icon: "success",
           title: "Expediente creado con exito!",
           showConfirmButton: false,
@@ -85,8 +88,17 @@ export class ExpedienteService {
         this.router.navigate(['/']);
       }),
       catchError((error)=>{
-        alert("el expediente no se pudo crear!")
-        this.router.navigate(['/']);
+        if(error.status === 409){
+          Swal.fire({
+            icon: "error",
+            title: "Expediente ya existe!",
+            showConfirmButton: false,
+            timer: 1800
+          });
+          this.changeData(expediente.Numero_Expediente);
+          this.router.navigate(['/']);
+        }
+
         return EMPTY;
       })
     );
@@ -103,25 +115,32 @@ export class ExpedienteService {
 
   buscarExpediente(expediente:string):Observable<any>{
 
+
     return this.http.get<any>(`${this.Url}/${expediente}`).pipe(
       tap((res)=>{
         localStorage.setItem("expediente", res.result.Numero_Expediente);
       }),
       catchError((error: HttpErrorResponse)=>{
         if(error.status === 404){
-
-          Swal.fire({
-          icon: "error",
-          title: "Expediente no encontrado!",
-          showConfirmButton: false,
-          timer: 1800
-        });
         const role = this.service.getRole();
         const ruta = role+"/Expedientes/Crear";
+        this.router.navigate([ruta]);
 
+        }
+        if(error.status === 409){
+          Swal.fire({
+            icon: "error",
+            title: "Expediente ya existe!",
+            showConfirmButton: false,
+            timer: 1800
+          });
+
+          const role = this.service.getRole();
+          const ruta = role+"/Expedientes/Crear";
           this.router.navigate([ruta]);
         }
         return EMPTY;
+
       })
     )
   }
@@ -671,6 +690,10 @@ export class ExpedienteService {
               }
           });
       });
+  }
+
+  getNombreAbogado(): Observable<any[]>{
+    return this.http.get<any[]>(`${this.Url}/nombre-abogado`)
   }
 
 

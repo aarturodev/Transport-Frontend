@@ -2,7 +2,7 @@
   <div class="flex justify-between items-center">
     <h1 class="text-2xl font-bold text-gray-800">Administrador de usuarios</h1>
     <button
-      class="focus:outline-none text-white bg-[#bed000] hover:bg-[#565745] focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+      class="focus:outline-none text-white bg-[#bed000] hover:bg-[#565745] focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
       type="button" (click)="toggleModal()">
       Crear Usuario
     </button>
@@ -73,15 +73,25 @@
           <!--footer-->
           <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
             <button
-              class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              class="text-[#4f4f4ed7] background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
               type="button" (click)="toggleModal()">
               Cancelar
             </button>
+            @if(crearUsuario){
+
             <button
-              class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              class="bg-[#bed000] text-white active:bg-[#4f4f4ed7] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
               type="button" (click)="toggleModal()">
               Crear
             </button>
+            }@else{
+
+            <button
+              class="bg-[#bed000] text-white active:bg-[#4f4f4ed7] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              type="button" (click)="toggleModal()">
+              Actualizar
+            </button>
+            }
           </div>
         </div>
       </div>
@@ -94,7 +104,7 @@
   </div>
   <div class="mt-5">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
         <tr>
           <th scope="col" class="px-6 py-3">Nombre</th>
           <th scope="col" class="px-6 py-3">Correo</th>
@@ -104,7 +114,7 @@
       </thead>
       <tbody>
 
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <tr class="bg-white border-b ">
           <td class="px-6 py-4">Anderson Marin</td>
           <td class="px-6 py-4">andergmail.com</td>
           <td class="px-6 py-4">Admin</td>

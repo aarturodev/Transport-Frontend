@@ -9,12 +9,15 @@ import { Component } from '@angular/core';
 })
 export default class AdministradorUsuariosComponent {
 
+  crearUsuario = true;
+
    showModal = false;
   toggleModal(){
     this.showModal = !this.showModal;
   }
 
   editar(){
+    this.crearUsuario = false;
     this.showModal = !this.showModal;
   }
 

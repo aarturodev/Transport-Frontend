@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MotivoInvestigacion, Conducta, ModalidadServicio, TipoServicio, SujetoSancionable, TipoPersonaNatural } from '@core/models/Expediente';
@@ -58,11 +59,11 @@ export default class RecursoPrimeraInstanciaComponent {
   }
 
   form = new FormGroup({
-    Tipo_Recurso_Id: new FormControl('', Validators.required),
+    Tipo_Recurso_Id: new FormControl(null),
     No_Resolucion_Recurso: new FormControl(null),
     Fecha_Resolucion: new FormControl(null),
     Fecha_Notificacion: new FormControl(null),
-    Decision_Id: new FormControl('', Validators.required),
+    Decision_Id: new FormControl(null),
     Valor_Sancion_Modificado: new FormControl(null),
   })
 

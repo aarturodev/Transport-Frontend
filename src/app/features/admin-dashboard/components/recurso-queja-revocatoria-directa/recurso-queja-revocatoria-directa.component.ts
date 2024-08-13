@@ -72,13 +72,13 @@ export default class RecursoQuejaRevocatoriaDirectaComponent {
   }
 
   form = new FormGroup({
-    Recurso_Queja_Revoc_Id: new FormControl('', Validators.required),
+    Recurso_Queja_Revoc_Id: new FormControl(null),
     No_Radicado: new FormControl(null),
     Fecha_Radicado: new FormControl(null),
     No_Resolucion: new FormControl(null),
     Fecha_Resolucion: new FormControl(null),
     Fecha_Notificacion: new FormControl(null),
-    Decision_Queja_Revoc_Id: new FormControl('', Validators.required),
+    Decision_Queja_Revoc_Id: new FormControl(null),
 
   })
 

@@ -67,7 +67,7 @@ export default class RecursoSegundaInstanciaComponent {
     No_Resolucion_Recurso_Apelacion: new FormControl(null),
     Fecha_Resolucion_Rec_Apel: new FormControl(null),
     Fecha_Notificacion_Resolucion_Rec_Apel: new FormControl(null),
-    Decision_Seg_Instatancia_Id: new FormControl('', Validators.required),
+    Decision_Seg_Instatancia_Id: new FormControl(null),
     Fecha_Devolucion: new FormControl(null),
     Valor_Sancion_Modificado: new FormControl(null),
     No_Resol_Silencio_Administrativo: new FormControl(null),

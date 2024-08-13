@@ -1,7 +1,8 @@
+@if(expedientetabla){
 <section class="max-w-full min-h-auto p-6 mt-5 mx-4 bg-white shadow-md">
-  <h2 class="text-lg mb-4 font-semibold text-[#000000e3] uppercase dark:text-white">
+  <h2 class="text-lg mb-4 font-semibold text-[#000000e3] uppercase  dark:text-white">
     <span class="text-[#0000006c]">
-      {{expediente.Numero_Expediente}}
+      NUMERÓ DE EXPEDIENTE | {{expediente.Numero_Expediente}}
     </span>
   </h2>
 
@@ -110,152 +111,11 @@
 
     <div class="flex justify-end mt-6">
       <button [disabled]="!form.valid" [class]="!form.valid ? 'cursor-not-allowed' : ''"
-        class="px-8 py-2.5 leading-5 rounded text-white transition-colors duration-300 transform bg-[#7fb91adc] hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+        class="px-8 py-2.5 leading-5 rounded text-white transition-colors duration-300 transform bg-[#bed000] hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
         Actualizar
       </button>
     </div>
   </form>
 </section>
-<section class="relative overflow-x-scroll mx-4 mt-2 shadow-md bg-white">
-  <table class="w-full  text-left rtl:text-right text-gray-500 border">
-    <thead class="text-sm  bg-gray-100">
-      <tr class="text-white  bg-[#bfd00024]">
-        <th scope="col" class="px-6 py-3 whitespace-nowrap sticky top-0 left-0 z-10 bg-white text-gray-700">
-          N° Expediente
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center  text-gray-700">
-          Motivo de investigación
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° de informe de infracción / Memorando
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Fecha de los hechos
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Caducidad
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Placa
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Conducta (clase de infracción)
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Modalidad de servicio
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Tipo de servicio
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Sujeto sancionable
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Tipo de persona natural
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Nombre de la persona natural
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Nit o cedula
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° Resolucion
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Fecha de Resolución
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Fecha de Notificación
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Fecha maxima descargos
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° Radicado
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Fecha de Radicado
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° Resolucion
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Fecha de Resolución
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Fecha de Comunicación
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° Auto de Pruebas
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Fecha Auto de Pruebas
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Fecha Comunicacion Auto de Pruebas
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° Auto de Traslado
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Fecha Auto Traslado
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Fecha Comunicacion Auto Traslado
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Fecha Terminos Alegatos
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° Radicado Alegatos
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          Fecha Radicado Alegatos
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° Resolucion
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° Resolucion
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° Resolucion
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° Resolucion
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° Resolucion
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° Resolucion
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° Resolucion
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° Resolucion
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° Resolucion
-        </th>
-        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center text-gray-700">
-          N° Resolucion
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="bg-gray-100">
-        <th scope="col" class="px-6 py-3 sticky top-0 left-0 z-10 bg-white">
-          224343
-        </th>
-
-        <td class="px-6 py-4 text-cente">
-          <span class="text-gray-900">memorando</span>
-        </td>
-      </tr>
-
-    </tbody>
-  </table>
-</section>
+<app-tabla-expediente [expedientetabla]="expedientetabla"></app-tabla-expediente>
+}

@@ -21,21 +21,28 @@ export default class AsignacionComponent {
   private loginService = inject(LoginService);
 
 
+  nombreAbogado: any[] = []
   asignacion : any = {}
   expediente:any = {}
 
   ngOnInit(): void {
     this.expedienteService.expediente$.subscribe((res:any)=>{
-      this.expedienteService.buscarAsignacion(res).subscribe((res:any)=>{
-        if(res.result.Fecha_Asignacion !== null){
-          res.result.Fecha_Asignacion = res.result.Fecha_Asignacion.split('T')[0];
-        }
-        this.asignacion = res.result;
-        this.form.patchValue(res.result);
-      })
+       this.expedienteService.buscarAsignacion(res).subscribe((res:any)=>{
+         if(res.result.Fecha_Asignacion !== null){
+           res.result.Fecha_Asignacion = res.result.Fecha_Asignacion.split('T')[0];
+         }
+         this.asignacion = res.result;
+         this.form.patchValue(res.result);
+       })
       this.expedienteService.buscarExpediente(res).subscribe((res:any)=>{
         this.expediente = res.result;
       });
+    })
+  }
+
+  constructor(){
+    this.expedienteService.getNombreAbogado().subscribe((res)=>{
+      this.nombreAbogado = res
     })
   }
 
@@ -43,7 +50,7 @@ export default class AsignacionComponent {
 
 
   form = new FormGroup({
-    Nombre_Abogado: new FormControl(null),
+    Nombre_Abogado_Id: new FormControl(null),
     Fecha_Asignacion: new FormControl(null),
 
   })
@@ -56,7 +63,7 @@ export default class AsignacionComponent {
 
     const Expediente = {
       Expediente_Id: this.expediente.Id,
-      Nombre_Abogado: this.form.value.Nombre_Abogado,
+      Nombre_Abogado_Id: Number(this.form.value.Nombre_Abogado_Id),
       Fecha_Asignacion: this.form.value.Fecha_Asignacion,
       Usuario_Id : Number(this.loginService.getUser()),
       Ultima_Modificacion: this.http.getDate()

@@ -62,7 +62,7 @@ export default class FalloComponent {
   form = new FormGroup({
     Numero_Resolucion: new FormControl(null),
     Fecha_Resolucion : new FormControl(null),
-    Sentido_Fallo_Id: new FormControl(null, Validators.required),
+    Sentido_Fallo_Id: new FormControl(null),
     Valor_Sancion: new FormControl(null),
     Fecha_Notificacion: new FormControl(null),
     Fecha_Max_Para_Recursos : new FormControl(null),

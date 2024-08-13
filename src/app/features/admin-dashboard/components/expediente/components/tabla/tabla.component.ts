@@ -1,15 +1,18 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Conducta, ModalidadServicio, MotivoInvestigacion, SujetoSancionable, TipoPersonaNatural, TipoServicio } from '@core/models/Expediente';
 import { ExpedienteService } from '@core/services/expediente.service';
 import { LoginService } from '@core/services/login.service';
 import { concatMap, EMPTY, switchMap } from 'rxjs';
+import Swal from 'sweetalert2';
+import { TablaExpedienteComponent } from './tabla-expediente/tabla-expediente.component';
 
 @Component({
   selector: 'app-tabla',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, DatePipe, TablaExpedienteComponent],
   templateUrl: './tabla.component.html',
   styleUrl: './tabla.component.css'
 })
@@ -19,7 +22,8 @@ export default class TablaComponent implements OnInit{
   private http = inject(ExpedienteService)
   private expedienteService = inject(ExpedienteService)
   private loginService = inject(LoginService);
-  private router = inject(Router);
+  private cd = inject(ChangeDetectorRef);
+
 
   motivoInvestigacion:MotivoInvestigacion[] = [];
   conducta:Conducta[] = [];
@@ -28,12 +32,14 @@ export default class TablaComponent implements OnInit{
   sujetoSancionable:SujetoSancionable[] = [];
   tipoPersonaNatural:TipoPersonaNatural[] = [];
   expediente:any = {}
-  expedientetaabla : any = {}
-
+  expedientetabla : any = {}
 
 
   ngOnInit(): void {
     const expediente = this.expedienteService.changeData(localStorage.getItem('expediente') || '');
+    if(expediente !== undefined){
+      this.expedienteService.changeData(expediente);
+    }
     this.expedienteService.expediente$.subscribe((res:any)=>{
       this.expedienteService.buscarExpediente(res).subscribe((res:any)=>{
 
@@ -45,13 +51,16 @@ export default class TablaComponent implements OnInit{
         }
 
         this.expediente = res.result;
-        console.log(this.expediente);
         this.form.patchValue(this.expediente);
       });
 
-       this.expedienteService.getExpedienteTabla(res).subscribe((res:any)=>{
-        console.log("res: ",res);
+      this.expedienteService.getExpedienteTabla(res).subscribe((res)=>{
+        this.expedientetabla = res
+        console.log('expediente Tabla: ', res);
+
       })
+
+
 
     })
 
@@ -132,7 +141,15 @@ export default class TablaComponent implements OnInit{
 
     }
 
-    this.expedienteService.actualizarExpediente(Expediente).subscribe();
+    this.expedienteService.actualizarExpediente(Expediente).subscribe({
+      next: (res)=>{
+        this.expedienteService.getExpedienteTabla(Expediente.Numero_Expediente).subscribe((res)=>{
+        this.expedientetabla = res
+        console.log('update tabla', res);
+
+      })
+      }
+    });
 
   }
 

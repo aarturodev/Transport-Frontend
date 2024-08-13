@@ -54,7 +54,7 @@ export default class AjusteDerechoAclaratorioComponent {
   }
 
   form = new FormGroup({
-    Tipo_Resolucion_Id: new FormControl('', Validators.required),
+    Tipo_Resolucion_Id: new FormControl(null),
     No_Resolucion: new FormControl(null),
     Fecha_Resolucion: new FormControl(null),
     Fecha_Fecha_Notificacion: new FormControl(null),

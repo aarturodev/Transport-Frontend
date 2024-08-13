@@ -2,7 +2,7 @@
 <section class="max-w-full min-h-80 p-6 mt-5 mx-4 bg-white shadow-md">
   <h2 class="text-lg mb-4 font-semibold text-[#000000e3] uppercase dark:text-white">
     <span class="text-[#0000006c]">
-      {{expediente.Numero_Expediente}}
+      NUMERÓ DE EXPEDIENTE | {{expediente.Numero_Expediente}}
     </span>
   </h2>
 
@@ -10,9 +10,14 @@
     <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
 
       <div>
-        <label class="text-gray-900 font-light text-sm" for="fechH">Nombre Abogado</label>
-        <input id="fechH" type="text" formControlName="Nombre_Abogado"
+        <label class="text-gray-900 font-light text-sm" for="motInv">Nombre Abogado</label>
+        <select id="motInv" formControlName="Nombre_Abogado_Id"
           class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+          <option [ngValue]="null"></option>
+          @for (item of nombreAbogado; track $index) {
+          <option value={{item.Id}}>{{item.Nombre_Abogado}}</option>
+          }
+        </select>
       </div>
       <div>
         <label class="text-gray-900 font-light text-sm" for="fechH">Fecha de asignacion</label>

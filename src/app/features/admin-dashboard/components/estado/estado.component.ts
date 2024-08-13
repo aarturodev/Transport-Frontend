@@ -19,19 +19,25 @@ export default class EstadoComponent {
   private expedienteService = inject(ExpedienteService)
   private loginService = inject(LoginService);
 
-
+  tipoEstado :any[] = []
   estado : any = {}
   expediente:any = {}
 
-  ngOnInit(): void {
-    this.expedienteService.expediente$.subscribe((res:any)=>{
-      this.expedienteService.buscarEstado(res).subscribe((res:any)=>{
-        this.estado = res.result;
-        this.form.patchValue(res.result);
-      })
-      this.expedienteService.buscarExpediente(res).subscribe((res:any)=>{
-        this.expediente = res.result;
-      });
+   ngOnInit(): void {
+     this.expedienteService.expediente$.subscribe((res:any)=>{
+        this.expedienteService.buscarEstado(res).subscribe((res:any)=>{
+          this.estado = res.result;
+          this.form.patchValue(res.result);
+        })
+       this.expedienteService.buscarExpediente(res).subscribe((res:any)=>{
+         this.expediente = res.result;
+       });
+     })
+   }
+
+  constructor(){
+    this.expedienteService.getTipoEstado().subscribe((res)=>{
+      this.tipoEstado = res
     })
   }
 
@@ -40,7 +46,7 @@ export default class EstadoComponent {
 
 
   form = new FormGroup({
-    Descripcion: new FormControl(null)
+    Tipo_Estado_Id: new FormControl(null)
 
   })
 
@@ -52,7 +58,7 @@ export default class EstadoComponent {
 
     const Estado = {
       Expediente_Id: this.expediente.Id,
-      Descripcion: this.form.value.Descripcion,
+      Tipo_Estado_Id: Number(this.form.value.Tipo_Estado_Id),
       Usuario_Id : Number(this.loginService.getUser()),
       Ultima_Modificacion: this.http.getDate()
 
