@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MotivoInvestigacion, Conducta, ModalidadServicio, TipoServicio, SujetoSancionable, TipoPersonaNatural } from '@core/models/Expediente';
 import { ExpedienteService } from '@core/services/expediente.service';
 import { LoginService } from '@core/services/login.service';
 import { HeaderComponent } from '@shared/components/header/header.component';
@@ -20,6 +19,8 @@ export default class AperturaComponent implements OnInit{
   private expedienteService = inject(ExpedienteService)
   private loginService = inject(LoginService);
   private router = inject(Router)
+
+  Rol = this.loginService.getRole();
 
   expediente:any = {}
   apertura:any = {}

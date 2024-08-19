@@ -1,8 +1,7 @@
-<section class="bg-[#8c8c893e] dark:bg-gray-900">
+<section class="bg-[#8c8c893e]">
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 
-    <div
-      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+    <div class="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
         <h1
           class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -17,17 +16,16 @@
 
         <form class="space-y-4 md:space-y-6" [formGroup]="formGroup" (ngSubmit)="login()">
           <div>
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Correo
               electronico</label>
             <input type="email" formControlName="username"
-              class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
               placeholder="anderson@gmail.com" required="">
           </div>
           <div>
-            <label for="password"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Contraseña</label>
             <input type="password" placeholder="••••••••" formControlName="password"
-              class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
               required="">
           </div>
 
@@ -36,8 +34,7 @@
             @if(!isLoading){
             Iniciar sesión
             }@else{
-            <svg aria-hidden="true"
-              class="size-6 text-center text-gray-200 animate-spin dark:text-gray-600 fill-[#dec012]"
+            <svg aria-hidden="true" class="size-6 text-center text-gray-200 animate-spin  fill-[#dec012]"
               viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"

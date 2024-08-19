@@ -1,17 +1,17 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ExpedienteService } from '@core/services/expediente.service';
 import { LoginService } from '@core/services/login.service';
 import { HeaderComponent } from '@shared/components/header/header.component';
 
 @Component({
-  selector: 'app-estado',
+  selector: 'app-estado-final',
   standalone: true,
-  imports: [ReactiveFormsModule, HeaderComponent],
-  templateUrl: './estado.component.html',
-  styleUrl: './estado.component.css'
+  templateUrl: './estado-final.component.html',
+  styleUrls: ['./estado-final.component.css'],
+  imports: [ReactiveFormsModule, HeaderComponent]
 })
-export default class EstadoComponent {
+export default class EstadoFinalComponent implements OnInit {
 
 
   private http = inject(ExpedienteService)
@@ -20,16 +20,15 @@ export default class EstadoComponent {
 
   Rol = this.loginService.getRole();
 
-  tipoEstado :any[] = []
-  estado : any = {}
+  tipoEstadoFinal :any[] = []
   expediente:any = {}
 
    ngOnInit(): void {
      this.expedienteService.expediente$.subscribe((res:any)=>{
-        this.expedienteService.buscarEstado(res).subscribe((res:any)=>{
-          this.estado = res.result;
-          this.form.patchValue(res.result);
-        })
+      this.expedienteService.buscarEstadoFinal(res).subscribe((res:any)=>{
+        this.form.patchValue(res.result)
+
+      })
        this.expedienteService.buscarExpediente(res).subscribe((res:any)=>{
          this.expediente = res.result;
        });
@@ -37,8 +36,8 @@ export default class EstadoComponent {
    }
 
   constructor(){
-    this.expedienteService.getTipoEstado().subscribe((res)=>{
-      this.tipoEstado = res
+    this.expedienteService.getTipoEstadoFinal().subscribe((res)=>{
+      this.tipoEstadoFinal = res
     })
   }
 
@@ -47,7 +46,7 @@ export default class EstadoComponent {
 
 
   form = new FormGroup({
-    Tipo_Estado_Id: new FormControl(null)
+    Tipo_Estado_Final_Id: new FormControl(null)
 
   })
 
@@ -57,14 +56,16 @@ export default class EstadoComponent {
       return
     }
 
-    const Estado = {
+    const EstadoFinal = {
       Expediente_Id: this.expediente.Id,
-      Tipo_Estado_Id: Number(this.form.value.Tipo_Estado_Id),
+      Tipo_Estado_Final_Id: Number(this.form.value.Tipo_Estado_Final_Id),
       Usuario_Id : Number(this.loginService.getUser()),
       Ultima_Modificacion: this.http.getDate()
 
     }
-    this.expedienteService.actualizarEstado(Estado).subscribe();
+
+    this.expedienteService.actualizarEstadoFinal(EstadoFinal).subscribe();
+
 
 
   }

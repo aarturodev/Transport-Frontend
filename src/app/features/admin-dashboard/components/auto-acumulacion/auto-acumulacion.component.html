@@ -1,13 +1,19 @@
 <app-header></app-header>
-<section class="max-w-full min-h-80 p-6 mt-5 mx-4 bg-white shadow-md">
+<section class="max-w-full min-h-auto p-6 mt-5 mx-4 bg-white shadow-md">
   <h2 class="text-lg mb-4 font-semibold text-[#000000e3] uppercase dark:text-white">
     <span class="text-[#0000006c]">
       NUMERÓ DE EXPEDIENTE | {{expediente.Numero_Expediente}}
     </span>
   </h2>
 
-  <form [formGroup]="form" (ngSubmit)="actualizarApertura()">
+  <form [formGroup]="form" (ngSubmit)="crearAutoAcumulacion()">
     <div class="grid grid-cols-2 gap-6 mt-4 sm:grid-cols-3">
+
+      <div>
+        <label class="text-gray-900 font-light text-sm" for="numInfra">N° Expediente Acumulado</label>
+        <input id="numInfra" type="text" formControlName="Numero_Exp_Acumulado"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
+      </div>
 
       <div>
         <label class="text-gray-900 font-light text-sm" for="numInfra">N° Resolucion</label>
@@ -20,26 +26,11 @@
           class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
       </div>
       <div>
-        <label class="text-gray-900 font-light text-sm" for="fechH">Fecha de Notificación</label>
-        <input id="fechH" type="date" formControlName="Fecha_Notificacion"
-          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
-      </div>
-      <div>
-        <label class="text-gray-900 font-light text-sm" for="fechH">Fecha maxima descargos</label>
-        <input id="fechH" type="date" formControlName="Fecha_Max_Descargos"
+        <label class="text-gray-900 font-light text-sm" for="fechH">Fecha de Comunicación</label>
+        <input id="fechH" type="date" formControlName="Fecha_Comunicacion"
           class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
       </div>
 
-      <div>
-        <label class="text-gray-900 font-light text-sm" for="numInfra">N° Radicado</label>
-        <input id="numInfra" type="text" formControlName="Numero_radicado"
-          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
-      </div>
-      <div>
-        <label class="text-gray-900 font-light text-sm" for="fechH">Fecha de Radicado</label>
-        <input id="fechH" type="date" formControlName="Fecha_Radicado"
-          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
-      </div>
     </div>
     <div class="flex justify-end mt-6">
       @if(Rol === 'Admin' || Rol === 'Editor'){

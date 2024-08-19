@@ -19,6 +19,7 @@ export default class AjusteDerechoAclaratorioComponent {
   private expedienteService = inject(ExpedienteService)
   private loginService = inject(LoginService);
 
+  Rol = this.loginService.getRole();
 
   tipoResolucion:any = []
   ajusteDerechoAclaratorio:any = {}

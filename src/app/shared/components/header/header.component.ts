@@ -22,6 +22,8 @@ export class HeaderComponent{
   authService = inject(LoginService);
   expedienteService = inject(ExpedienteService)
 
+  Rol = this.authService.getRole();
+
   ruta = this.router.url;
 
 
@@ -31,7 +33,8 @@ export class HeaderComponent{
     if(this.form.value.expediente){
       this.expedienteService.changeData(this.form.value.expediente);
 
-      this.router.navigate(['Admin/Expedientes/Tabla']);
+      const ruta = this.Rol+'/Expedientes/Tabla';
+      this.router.navigate([ruta]);
     }
 
   }

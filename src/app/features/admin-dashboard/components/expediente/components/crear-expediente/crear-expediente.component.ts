@@ -1,7 +1,7 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Conducta, ModalidadServicio, MotivoInvestigacion, SujetoSancionable, TipoPersonaNatural, TipoServicio } from '@core/models/Expediente';
 import { ExpedienteService } from '@core/services/expediente.service';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginService } from '@core/services/login.service';
 
 @Component({
@@ -15,6 +15,7 @@ export default class CrearExpedienteComponent {
 
   private http = inject(ExpedienteService)
   private loginService = inject(LoginService);
+  Rol = this.loginService.getRole();
 
   motivoInvestigacion:MotivoInvestigacion[] = [];
   conducta:Conducta[] = [];

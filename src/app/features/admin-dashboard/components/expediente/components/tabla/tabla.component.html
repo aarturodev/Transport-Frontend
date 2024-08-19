@@ -7,7 +7,7 @@
   </h2>
 
   <form [formGroup]="form" (ngSubmit)="actualizarExpediente()">
-    <div class="grid grid-cols-2 gap-6 mt-4 sm:grid-cols-3">
+    <div class="grid grid-cols-1 gap-6 mt-4 md:grid-cols-3 sm:grid-cols-2">
 
 
       <div>
@@ -110,10 +110,13 @@
     </div>
 
     <div class="flex justify-end mt-6">
+      @if(Rol === 'Admin' || Rol === 'Editor'){
+
       <button [disabled]="!form.valid" [class]="!form.valid ? 'cursor-not-allowed' : ''"
-        class="px-8 py-2.5 leading-5 rounded text-white transition-colors duration-300 transform bg-[#bed000] hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+        class="px-8 py-2.5 leading-5 rounded text-white transition-colors duration-300 transform bg-[#7fb91adc] hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
         Actualizar
       </button>
+      }
     </div>
   </form>
 </section>

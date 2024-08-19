@@ -20,6 +20,8 @@ export default class InhibitorioComponent {
   private loginService = inject(LoginService);
   private router = inject(Router)
 
+  Rol = this.loginService.getRole();
+
 
   motivoInvestigacion:MotivoInvestigacion[] = [];
   conducta:Conducta[] = [];

@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { MotivoInvestigacion, Conducta, ModalidadServicio, TipoServicio, SujetoSancionable, TipoPersonaNatural } from '@core/models/Expediente';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ExpedienteService } from '@core/services/expediente.service';
 import { LoginService } from '@core/services/login.service';
 import { HeaderComponent } from '@shared/components/header/header.component';
@@ -18,6 +17,8 @@ export default class GestionCobroComponent {
   private http = inject(ExpedienteService)
   private expedienteService = inject(ExpedienteService)
   private loginService = inject(LoginService);
+
+  Rol = this.loginService.getRole();
 
   gestionCobro:any = {}
   expediente:any = {}

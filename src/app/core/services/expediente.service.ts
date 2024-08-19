@@ -738,6 +738,215 @@ export class ExpedienteService {
   }
 
 
+  buscarAutoacumulacion(expediente:string):Observable<any>{
+    return this.http.get<any>(`${this.Url}/auto-acumulacion/${expediente}`);
+  }
+
+  actualizarAutoacumulacion(expediente: any): Observable<any> {
+      return new Observable(observer => {
+          Swal.fire({
+              title: "¿Estás seguro?",
+              text: "Estás a punto de actualizar la Autoacumulacion",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Sí, actualizar!",
+              cancelButtonText: "Cancelar"
+          }).then((result: any) => {
+              if (result.isConfirmed) {
+                  this.http.patch<any>(`${this.Url}/actualizar-auto-acumulacion`, expediente).subscribe(
+                      res => {
+                          Swal.fire({
+                              title: 'Actualizado!',
+                              text: 'Autoacumulacion actualizado con exito!',
+                              icon: 'success',
+                              showConfirmButton: false,
+                              timer: 1800
+                          });
+                          observer.next(res);
+                          observer.complete();
+                      },
+                      err => {
+                          observer.error(err);
+                      }
+                  );
+              } else {
+                  observer.complete();
+              }
+          });
+      });
+  }
+
+  buscarPagoValor(expediente:string):Observable<any>{
+    return this.http.get<any>(`${this.Url}/pago-valor/${expediente}`);
+  }
+
+  actualizarPagoValor(expediente: any): Observable<any> {
+      return new Observable(observer => {
+          Swal.fire({
+              title: "¿Estás seguro?",
+              text: "Estás a punto de actualizar el Pago de Valor",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Sí, actualizar!",
+              cancelButtonText: "Cancelar"
+          }).then((result: any) => {
+              if (result.isConfirmed) {
+                  this.http.patch<any>(`${this.Url}/actualizar-pago-valor`, expediente).subscribe(
+                      res => {
+                          Swal.fire({
+                              title: 'Actualizado!',
+                              text: 'Pago de Valor actualizado con exito!',
+                              icon: 'success',
+                              showConfirmButton: false,
+                              timer: 1800
+                          });
+                          observer.next(res);
+                          observer.complete();
+                      },
+                      err => {
+                          observer.error(err);
+                      }
+                  );
+              } else {
+                  observer.complete();
+              }
+          });
+      });
+  }
+
+  buscarSolicitudesEspeciales(expediente:string):Observable<any>{
+    return this.http.get<any>(`${this.Url}/solicitudes-especiales/${expediente}`);
+  }
+
+  actualizarSolicitudesEspeciales(expediente: any): Observable<any> {
+      return new Observable(observer => {
+          Swal.fire({
+              title: "¿Estás seguro?",
+              text: "Estás a punto de actualizar las Solicitudes Especiales",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Sí, actualizar!",
+              cancelButtonText: "Cancelar"
+          }).then((result: any) => {
+              if (result.isConfirmed) {
+                  this.http.patch<any>(`${this.Url}/actualizar-solicitudes-especiales`, expediente).subscribe(
+                      res => {
+                          Swal.fire({
+                              title: 'Actualizado!',
+                              text: 'Solicitudes Especiales actualizado con exito!',
+                              icon: 'success',
+                              showConfirmButton: false,
+                              timer: 1800
+                          });
+                          observer.next(res);
+                          observer.complete();
+                      },
+                      err => {
+                          observer.error(err);
+                      }
+                  );
+              } else {
+                  observer.complete();
+              }
+          });
+      });
+  }
+
+  getTipoUbicacion(): Observable<any> {
+    return this.http.get<any>(`${this.Url}/tipo-ubicacion`);
+  }
+
+  buscarUbicacionExpediente(expediente:string):Observable<any>{
+    return this.http.get<any>(`${this.Url}/ubicacion-expediente/${expediente}`);
+  }
+
+  actualizarUbicacionExpediente(expediente: any): Observable<any> {
+      return new Observable(observer => {
+          Swal.fire({
+              title: "¿Estás seguro?",
+              text: "Estás a punto de actualizar la Ubicacion del Expediente",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Sí, actualizar!",
+              cancelButtonText: "Cancelar"
+          }).then((result: any) => {
+              if (result.isConfirmed) {
+                  this.http.patch<any>(`${this.Url}/actualizar-ubicacion-expediente`, expediente).subscribe(
+                      res => {
+                          Swal.fire({
+                              title: 'Actualizado!',
+                              text: 'Ubicacion del Expediente actualizado con exito!',
+                              icon: 'success',
+                              showConfirmButton: false,
+                              timer: 1800
+                          });
+                          observer.next(res);
+                          observer.complete();
+                      },
+                      err => {
+                          observer.error(err);
+                      }
+                  );
+              } else {
+                  observer.complete();
+              }
+          });
+      });
+  }
+
+  getTipoEstadoFinal(): Observable<any[]>{
+    return this.http.get<any[]>(`${this.Url}/tipo-estado-final`)
+  }
+
+  buscarEstadoFinal(expediente:string):Observable<any>{
+    return this.http.get<any>(`${this.Url}/estado-final/${expediente}`);
+  }
+
+  actualizarEstadoFinal(expediente: any): Observable<any> {
+      return new Observable(observer => {
+          Swal.fire({
+              title: "¿Estás seguro?",
+              text: "Estás a punto de actualizar el Estado Final del Expediente",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Sí, actualizar!",
+              cancelButtonText: "Cancelar"
+          }).then((result: any) => {
+              if (result.isConfirmed) {
+                  this.http.patch<any>(`${this.Url}/actualizar-estado-final`, expediente).subscribe(
+                      res => {
+                          Swal.fire({
+                              title: 'Actualizado!',
+                              text: 'Estado Final del Expediente actualizado con exito!',
+                              icon: 'success',
+                              showConfirmButton: false,
+                              timer: 1800
+                          });
+                          observer.next(res);
+                          observer.complete();
+                      },
+                      err => {
+                          observer.error(err);
+                      }
+                  );
+              } else {
+                  observer.complete();
+              }
+          });
+      });
+  }
+
+
 
 
 

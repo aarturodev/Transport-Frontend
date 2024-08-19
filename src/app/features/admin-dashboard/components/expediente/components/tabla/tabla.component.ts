@@ -1,12 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Conducta, ModalidadServicio, MotivoInvestigacion, SujetoSancionable, TipoPersonaNatural, TipoServicio } from '@core/models/Expediente';
 import { ExpedienteService } from '@core/services/expediente.service';
 import { LoginService } from '@core/services/login.service';
-import { concatMap, EMPTY, switchMap } from 'rxjs';
-import Swal from 'sweetalert2';
 import { TablaExpedienteComponent } from './tabla-expediente/tabla-expediente.component';
 
 @Component({
@@ -23,6 +20,8 @@ export default class TablaComponent implements OnInit{
   private expedienteService = inject(ExpedienteService)
   private loginService = inject(LoginService);
   private cd = inject(ChangeDetectorRef);
+
+  Rol = this.loginService.getRole();
 
 
   motivoInvestigacion:MotivoInvestigacion[] = [];

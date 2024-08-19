@@ -10,14 +10,14 @@
     <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
 
       <div>
-        <label class="text-gray-900 font-light text-sm" for="motInv">Estado</label>
-        <select id="motInv" formControlName="Tipo_Estado_Id"
+        <label class="text-gray-900 font-light text-sm" for="fechH">Recibo de Pago</label>
+        <input id="fechH" type="text" formControlName="Recibo_Pago"
           class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
-          <option [ngValue]="null"></option>
-          @for (item of tipoEstado; track $index) {
-          <option value={{item.Id}}>{{item.Descripcion}}</option>
-          }
-        </select>
+      </div>
+      <div>
+        <label class="text-gray-900 font-light text-sm" for="fechH">Valor</label>
+        <input id="fechH" type="text" formControlName="Valor"
+          class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
       </div>
     </div>
     <div class="flex justify-end mt-6">

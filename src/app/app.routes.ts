@@ -52,6 +52,10 @@ export const routes: Routes = [
             loadComponent: ()=> import('@features/admin-dashboard/components/inhibitorio/inhibitorio.component')
           },
           {
+            path: 'Acumulacion',
+            loadComponent: ()=> import('@features/admin-dashboard/components/auto-acumulacion/auto-acumulacion.component')
+          },
+          {
             path: 'Pruebas',
             loadComponent: ()=> import('@features/admin-dashboard/components/pruebas/pruebas.component')
           },
@@ -94,6 +98,22 @@ export const routes: Routes = [
           {
             path: 'Asignacion',
             loadComponent: ()=> import('@features/admin-dashboard/components/asignacion/asignacion.component')
+          },
+          {
+            path: 'Pago-valor',
+            loadComponent: ()=> import('@features/admin-dashboard/components/pago-valor/pago-valor.component')
+          },
+          {
+            path: 'Solicitudes-especiales',
+            loadComponent: ()=> import('@features/admin-dashboard/components/solicitudes-especiales/solicitudes-especiales.component')
+          },
+          {
+            path: 'Estado-final',
+            loadComponent: ()=> import('@features/admin-dashboard/components/estado-final/estado-final.component')
+          },
+          {
+            path: 'Ubicacion-expediente',
+            loadComponent: ()=> import('@features/admin-dashboard/components/ubicacion-expediente/ubicacion-expediente.component')
           },
           {
             path: 'Administrador-usuarios',
@@ -117,13 +137,18 @@ export const routes: Routes = [
             loadComponent: ()=> import('@features/admin-dashboard/components/expediente/expediente.component'),
             children: [
               {
-                path: 'Nuevo',
+                path: 'Crear',
                 loadComponent: ()=> import('@features/admin-dashboard/components/expediente/components/crear-expediente/crear-expediente.component')
               },
               {
-                path: '',
+                path: 'Tabla',
                 loadComponent: ()=> import('@features/admin-dashboard/components/expediente/components/tabla/tabla.component')
               },
+              {
+                path: '',
+                redirectTo: 'Tabla',
+                pathMatch: 'full',
+              }
 
             ]
           },
@@ -134,6 +159,10 @@ export const routes: Routes = [
           {
             path: 'Inhibitorio',
             loadComponent: ()=> import('@features/admin-dashboard/components/inhibitorio/inhibitorio.component')
+          },
+          {
+            path: 'Acumulacion',
+            loadComponent: ()=> import('@features/admin-dashboard/components/auto-acumulacion/auto-acumulacion.component')
           },
           {
             path: 'Pruebas',
@@ -178,6 +207,22 @@ export const routes: Routes = [
           {
             path: 'Asignacion',
             loadComponent: ()=> import('@features/admin-dashboard/components/asignacion/asignacion.component')
+          },
+          {
+            path: 'Pago-valor',
+            loadComponent: ()=> import('@features/admin-dashboard/components/pago-valor/pago-valor.component')
+          },
+          {
+            path: 'Solicitudes-especiales',
+            loadComponent: ()=> import('@features/admin-dashboard/components/solicitudes-especiales/solicitudes-especiales.component')
+          },
+          {
+            path: 'Estado-final',
+            loadComponent: ()=> import('@features/admin-dashboard/components/estado-final/estado-final.component')
+          },
+          {
+            path: 'Ubicacion-expediente',
+            loadComponent: ()=> import('@features/admin-dashboard/components/ubicacion-expediente/ubicacion-expediente.component')
           },
           {
             path: 'Administrador-usuarios',
@@ -201,13 +246,18 @@ export const routes: Routes = [
             loadComponent: ()=> import('@features/admin-dashboard/components/expediente/expediente.component'),
             children: [
               {
-                path: 'Nuevo',
+                path: 'Crear',
                 loadComponent: ()=> import('@features/admin-dashboard/components/expediente/components/crear-expediente/crear-expediente.component')
               },
               {
-                path: '',
+                path: 'Tabla',
                 loadComponent: ()=> import('@features/admin-dashboard/components/expediente/components/tabla/tabla.component')
               },
+              {
+                path: '',
+                redirectTo: 'Tabla',
+                pathMatch: 'full',
+              }
 
             ]
           },
@@ -218,6 +268,10 @@ export const routes: Routes = [
           {
             path: 'Inhibitorio',
             loadComponent: ()=> import('@features/admin-dashboard/components/inhibitorio/inhibitorio.component')
+          },
+          {
+            path: 'Acumulacion',
+            loadComponent: ()=> import('@features/admin-dashboard/components/auto-acumulacion/auto-acumulacion.component')
           },
           {
             path: 'Pruebas',
@@ -262,6 +316,22 @@ export const routes: Routes = [
           {
             path: 'Asignacion',
             loadComponent: ()=> import('@features/admin-dashboard/components/asignacion/asignacion.component')
+          },
+          {
+            path: 'Pago-valor',
+            loadComponent: ()=> import('@features/admin-dashboard/components/pago-valor/pago-valor.component')
+          },
+          {
+            path: 'Solicitudes-especiales',
+            loadComponent: ()=> import('@features/admin-dashboard/components/solicitudes-especiales/solicitudes-especiales.component')
+          },
+          {
+            path: 'Estado-final',
+            loadComponent: ()=> import('@features/admin-dashboard/components/estado-final/estado-final.component')
+          },
+          {
+            path: 'Ubicacion-expediente',
+            loadComponent: ()=> import('@features/admin-dashboard/components/ubicacion-expediente/ubicacion-expediente.component')
           },
           {
             path: 'Administrador-usuarios',

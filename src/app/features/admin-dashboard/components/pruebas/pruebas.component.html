@@ -58,10 +58,13 @@
 
     </div>
     <div class="flex justify-end mt-6">
+      @if(Rol === 'Admin' || Rol === 'Editor'){
+
       <button [disabled]="!form.valid" [class]="!form.valid ? 'cursor-not-allowed' : ''"
         class="px-8 py-2.5 leading-5 rounded text-white transition-colors duration-300 transform bg-[#7fb91adc] hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
         Actualizar
       </button>
+      }
     </div>
   </form>
 </section>

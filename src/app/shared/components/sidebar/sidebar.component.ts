@@ -15,11 +15,6 @@ export class SidebarComponent {
   private loginService = inject(LoginService);
 
   Rol = this.loginService.getRole();
-  constructor(private router: Router) {
-    console.log("este es el rol: ",this.Rol);
-
-  }
-
 
   // función para cerrar sesión
   logout(){

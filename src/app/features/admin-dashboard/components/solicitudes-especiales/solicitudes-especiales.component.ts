@@ -1,49 +1,49 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ExpedienteService } from '@core/services/expediente.service';
 import { LoginService } from '@core/services/login.service';
 import { HeaderComponent } from '@shared/components/header/header.component';
 
 @Component({
-  selector: 'app-ejecutoria',
+  selector: 'app-solicitudes-especiales',
   standalone: true,
-  imports: [ReactiveFormsModule, HeaderComponent],
-  templateUrl: './ejecutoria.component.html',
-  styleUrl: './ejecutoria.component.css'
+  templateUrl: './solicitudes-especiales.component.html',
+  styleUrls: ['./solicitudes-especiales.component.css'],
+  imports: [ReactiveFormsModule, HeaderComponent]
 })
-export default class EjecutoriaComponent {
-
+export default class SolicitudesEspecialesComponent implements OnInit {
 
   private http = inject(ExpedienteService)
   private expedienteService = inject(ExpedienteService)
   private loginService = inject(LoginService);
+  private router = inject(Router)
 
   Rol = this.loginService.getRole();
 
 
-  ejecutoria:any = {}
   expediente:any = {}
 
   ngOnInit(): void {
     this.expedienteService.expediente$.subscribe((res:any)=>{
-      this.expedienteService.buscarEjecutoria(res).subscribe((res:any)=>{
-        if(res.result.Fecha_Ejecutoria != null){
-          res.result.Fecha_Ejecutoria = res.result.Fecha_Ejecutoria.split("T")[0];
-        }
+      this.expedienteService.buscarSolicitudesEspeciales(res).subscribe((res:any)=>{
         this.form.patchValue(res.result);
-        this.ejecutoria = res.result;
-      })
-      this.expedienteService.buscarExpediente(res).subscribe((res:any)=>{
+
+      });
+
+       this.expedienteService.buscarExpediente(res).subscribe((res:any)=>{
         this.expediente = res.result;
       });
+
     })
   }
 
 
   form = new FormGroup({
-    Fecha_Ejecutoria: new FormControl(null),
+    Descripcion : new FormControl(null),
 
   })
+
 
   crearExpediente(){
     if(!this.form.valid){
@@ -51,15 +51,13 @@ export default class EjecutoriaComponent {
       return
     }
 
-    const Ejecutoria = {
-      Expediente_Id: this.expediente.Id,
-      Fecha_Ejecutoria: this.form.value.Fecha_Ejecutoria,
+    const SolicitudesEspeciales = {
+      ...this.form.value,
+      Expediente_Id : this.expediente.Id,
       Usuario_Id : Number(this.loginService.getUser()),
-      Ultima_Modificacion: this.http.getDate()
-
+      Ultima_Modificacion : this.expedienteService.getDate(),
     }
-
-    this.expedienteService.actualizarEjecutoria(Ejecutoria).subscribe();
+    this.expedienteService.actualizarSolicitudesEspeciales(SolicitudesEspeciales).subscribe();
 
   }
 

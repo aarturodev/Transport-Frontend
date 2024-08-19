@@ -1,5 +1,6 @@
 <section class="max-w-full min-h-auto p-6 mt-5 mx-4 bg-white shadow-md">
 
+  @if(Rol === 'Admin' || Rol === 'Editor'){
   <form [formGroup]="form" (ngSubmit)="crearExpediente()">
     <div class="grid grid-cols-2 gap-6 mt-4 sm:grid-cols-3">
       <div>
@@ -108,9 +109,18 @@
     </div>
 
     <div class="flex justify-end mt-6">
+      @if(Rol === 'Admin' || Rol === 'Editor'){
       <button [disabled]="!form.valid" [class]="!form.valid ? 'cursor-not-allowed' : ''"
         class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Crear
         Expediente</button>
+
+      }
+
     </div>
   </form>
+  }@else{
+  <div class="flex justify-center items-center h-96">
+    <h1 class="text-2xl text-gray-500">No tienes cargado ningun expediente</h1>
+  </div>
+  }
 </section>

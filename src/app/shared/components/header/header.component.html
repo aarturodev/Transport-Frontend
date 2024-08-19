@@ -1,5 +1,5 @@
-<div class="w-full bg-[#ffffff] flex justify-around p-2 items-center ">
-  @if(ruta.includes('Expedientes')){
+<div class="w-full bg-[#ffffff] flex justify-around p-2 items-center sticky top-0">
+  @if(ruta.includes('Expedientes') && Rol === 'Admin' || Rol === 'Editor') {
   <button type="button" routerLink="Crear"
     class="relative px-10 py-2.5 text-xl min-w-40 font-normal text-white focus:outline-none bg-[#353534] rounded border border-gray-200 hover:bg-[#353534cb] focus:z-10 focus:ring-4 focus:ring-gray-100  ">
     Crear expediente
