@@ -10,7 +10,6 @@ export const AdminGuard: CanActivateFn = (route, state) => {
   // validamos si el usuario es admin
   const role = authService.getRole();
   const ruta = route.url[0].path;
-  console.log(role, ruta);
   if(ruta !== role){
     return router.navigate(['/'+role]);
   }

@@ -55,7 +55,6 @@ export default class TablaComponent implements OnInit{
 
       this.expedienteService.getExpedienteTabla(res).subscribe((res)=>{
         this.expedientetabla = res
-        console.log('expediente Tabla: ', res);
 
       })
 

@@ -69,6 +69,18 @@
         Fecha de Comunicación
       </th>
       <th scope="col" class="px-6 py-3 whitespace-nowrap text-center border ">
+        N° Expediente Acumulado
+      </th>
+      <th scope="col" class="px-6 py-3 whitespace-nowrap text-center border ">
+        N° Resolucion
+      </th>
+      <th scope="col" class="px-6 py-3 whitespace-nowrap text-center border ">
+        Fecha de Resolución
+      </th>
+      <th scope="col" class="px-6 py-3 whitespace-nowrap text-center border ">
+        Fecha de Comunicación
+      </th>
+      <th scope="col" class="px-6 py-3 whitespace-nowrap text-center border ">
         N° Auto de Pruebas
       </th>
       <th scope="col" class="px-6 py-3 whitespace-nowrap text-center border ">
@@ -218,12 +230,30 @@
       <th scope="col" class="px-6 py-3 whitespace-nowrap text-center border">
         Fecha de Asignación
       </th>
+      <th scope="col" class="px-6 py-3 whitespace-nowrap text-center border">
+        Recibo de Pago
+      </th>
+      <th scope="col" class="px-6 py-3 whitespace-nowrap text-center border">
+        Valor
+      </th>
+      <th scope="col" class="px-6 py-3 whitespace-nowrap text-center border">
+        Solicitudes Especiales
+      </th>
+      <th scope="col" class="px-6 py-3 whitespace-nowrap text-center border">
+        Tipo Ubicacion
+      </th>
+      <th scope="col" class="px-6 py-3 whitespace-nowrap text-center border">
+        Fecha de Entrega
+      </th>
+      <th scope="col" class="px-6 py-3 whitespace-nowrap text-center border">
+        Estado Final
+      </th>
     </tr>
 
 
     <tbody>
       <tr class="bg-gray-100">
-        <th scope="col" class="px-6 py-3 sticky top-0 left-0 z-10 uppercase bg-white">
+        <th scope="col" class="px-6 py-3 sticky whitespace-nowrap top-0 left-0 z-10 uppercase bg-white">
           {{expedientetabla.Numero_Expediente}}
         </th>
         <td class="px-6 py-4 whitespace-nowrap text-center">
@@ -276,7 +306,7 @@
           {{expedientetabla.Fecha_Max_Descargos | date: 'dd/MM/yyyy':'UTC'}}
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-center">
-          {{expedientetabla.Numero_Resolucion_Apertura}}
+          {{expedientetabla.Numero_radicado}}
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-center">
           {{expedientetabla.Fecha_Radicado_Apertura | date: 'dd/MM/yyyy' :'UTC'}}
@@ -289,6 +319,18 @@
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-center">
           {{expedientetabla.Fecha_Comunicacion_Inhibitorio | date: 'dd/MM/yyyy':'UTC'}}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center">
+          {{expedientetabla.Numero_Exp_Acumulado_Auto_Acumulacion}}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center">
+          {{expedientetabla.Numero_Resolucion_Auto_Acumulacion}}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center">
+          {{expedientetabla.Fecha_Resolucion_Auto_Acumulacion | date: 'dd/MM/yyyy':'UTC'}}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center">
+          {{expedientetabla.Fecha_Comunicacion_Auto_Acumulacion | date: 'dd/MM/yyyy':'UTC'}}
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-center">
           {{expedientetabla.No_Auto_Pruebas}}
@@ -439,6 +481,24 @@
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-center">
           {{expedientetabla.Fecha_Asignacion_Asignacion | date: 'dd/MM/yyyy':'UTC'}}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center">
+          {{ expedientetabla.Recibo_Pago_Pago_Valor}}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center">
+          {{ expedientetabla.Valor_Pago_Valor}}
+        </td>
+        <td class="px-6 py-4 text-nowrap max-w-4 overflow-hidden text-ellipsis hover:text-wrap">
+          {{ expedientetabla.Solicitudes_Especiales}}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center">
+          {{ expedientetabla.Tipo_Ubicacion_Expediente}}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center">
+          {{ expedientetabla.Fecha_Entrega_Ubicacion_Expediente | date: 'dd/MM/yyyy':'UTC'}}
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-center">
+          {{ expedientetabla.Tipo_Estado_Final}}
         </td>
 
       </tr>
