@@ -12,6 +12,10 @@ import { ExpedienteService } from '@core/services/expediente.service';
 export class TablaExpedienteComponent{
 
   @Input() expedientetabla: any = {};
+  constructor(){
+    console.log('expedientetabla', this.expedientetabla);
+  }
+
 
 
 }
