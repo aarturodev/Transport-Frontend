@@ -1,13 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ExpedienteService } from '@core/services/expediente.service';
 import { LoginService } from '@core/services/login.service';
 import { HeaderComponent } from '@shared/components/header/header.component';
+import { TablaExpedienteComponent } from '../expediente/components/tabla/tabla-expediente/tabla-expediente.component';
 
 @Component({
   selector: 'app-estado',
   standalone: true,
-  imports: [ReactiveFormsModule, HeaderComponent],
+  imports: [ReactiveFormsModule, HeaderComponent, TablaExpedienteComponent],
   templateUrl: './estado.component.html',
   styleUrl: './estado.component.css'
 })
@@ -23,6 +24,8 @@ export default class EstadoComponent {
   tipoEstado :any[] = []
   estado : any = {}
   expediente:any = {}
+  expedientetabla = signal({});
+  isDisabled = true;
 
    ngOnInit(): void {
      this.expedienteService.expediente$.subscribe((res:any)=>{
@@ -33,6 +36,12 @@ export default class EstadoComponent {
        this.expedienteService.buscarExpediente(res).subscribe((res:any)=>{
          this.expediente = res.result;
        });
+        this.expedienteService.getExpedienteTabla(res).subscribe((res)=>{
+        this.expedientetabla.set(res);
+
+        //this.expedientetabla = res
+
+      })
      })
    }
 
@@ -64,7 +73,14 @@ export default class EstadoComponent {
       Ultima_Modificacion: this.http.getDate()
 
     }
-    this.expedienteService.actualizarEstado(Estado).subscribe();
+    this.expedienteService.actualizarEstado(Estado).subscribe({
+       next: (res)=>{
+        this.expedienteService.getExpedienteTabla(this.expediente.Numero_Expediente).subscribe((res)=>{
+        this.expedientetabla.set(res);
+        console.log('update tabla', res);
+        })
+      }
+    });
 
 
   }

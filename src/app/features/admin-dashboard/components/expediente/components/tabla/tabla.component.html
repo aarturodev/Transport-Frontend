@@ -5,12 +5,12 @@
     </span>
   </h2>
 
-  <form [formGroup]="form" (ngSubmit)="actualizarExpediente()">
+  <form [formGroup]="form">
     <div class="grid grid-cols-1 gap-6 mt-4 md:grid-cols-3 sm:grid-cols-2">
 
 
       <div>
-        <label class="text-gray-900 font-light text-sm" for="motInv">Motivo de investigación</label>
+        <label class="text-gray-900 font-light text-sm" for="motInv">Motivo de Investigación</label>
         <select id="motInv" formControlName="Motivo_Investigacion_Id"
           class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
           <option [ngValue]="null"></option>
@@ -20,26 +20,25 @@
         </select>
       </div>
       <div>
-        <label class="text-gray-900 font-light text-sm" for="numInfra">N° de informe de infracción /
-          Memorando</label>
-        <input id="numInfra" type="text" formControlName="Numero_Informe_Infraccion"
+        <label class="text-gray-900 font-light text-sm" for="numInfra">N° de Informe de Infracción / Memorando</label>
+        <input id="numInfra" type="text" formControlName="Numero_Informe_Infraccion" [readonly]="Rol === 'Viewer'"
           class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
       </div>
 
       <div>
-        <label class="text-gray-900 font-light text-sm" for="fechH">Fecha de los hechos</label>
-        <input id="fechH" type="date" formControlName="Fecha_Hechos"
+        <label class="text-gray-900 font-light text-sm" for="fechH">Fecha de los Hechos</label>
+        <input id="fechH" type="date" formControlName="Fecha_Hechos" [readonly]="Rol === 'Viewer'"
           class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
       </div>
       <div>
         <label class="text-gray-900 font-light text-sm" for="cadu">Caducidad</label>
-        <input id="cadu" type="date" formControlName="Fecha_Caducidad"
+        <input id="cadu" type="date" formControlName="Fecha_Caducidad" [readonly]="Rol === 'Viewer'"
           class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
       </div>
 
       <div>
         <label class="text-gray-900 font-light" for="placa">Placa</label>
-        <input id="placa" type="text" formControlName="Placa"
+        <input id="placa" type="text" formControlName="Placa" [readonly]="Rol === 'Viewer'"
           class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
       </div>
       <div>
@@ -64,7 +63,7 @@
       </div>
 
       <div>
-        <label class="text-gray-900 font-light text-sm" for="tipS">Tipo de servicio</label>
+        <label class="text-gray-900 font-light text-sm" for="tipS">Tipo de Servicio</label>
         <select id="tipS" formControlName="Tipo_Servicio_Id"
           class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
           <option [ngValue]="null"></option>
@@ -75,7 +74,7 @@
       </div>
 
       <div>
-        <label class="text-gray-900 font-light text-sm" for="sujS">Sujeto sancionable</label>
+        <label class="text-gray-900 font-light text-sm" for="sujS">Sujeto Sancionable</label>
         <select id="sujS" formControlName="Sujeto_Sancionable_Id"
           class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md  focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
           <option [ngValue]="null"></option>
@@ -85,7 +84,7 @@
         </select>
       </div>
       <div>
-        <label class="text-gray-900 font-light text-sm" for="tipPN">Tipo de persona natural</label>
+        <label class="text-gray-900 font-light text-sm" for="tipPN">Tipo de Persona Natural</label>
         <select id="tipPN" formControlName="Tipo_Persona_Natural_Id"
           class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
           <option [ngValue]="null"></option>
@@ -96,13 +95,13 @@
       </div>
 
       <div>
-        <label class="text-gray-900 font-light text-sm" for="nomPN">Nombre de la persona natural</label>
-        <input id="nomPN" type="text" formControlName="Nombre_Persona_Natural"
+        <label class="text-gray-900 font-light text-sm" for="nomPN">Nombre de la Persona Natural</label>
+        <input id="nomPN" type="text" formControlName="Nombre_Persona_Natural" [readonly]="Rol === 'Viewer'"
           class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md  focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40  focus:outline-none focus:ring">
       </div>
       <div>
-        <label class="text-gray-900 font-light text-sm" for="nitC">Nit o cedula</label>
-        <input id="nitC" type="text" formControlName="Identificacion"
+        <label class="text-gray-900 font-light text-sm" for="nitC">Nit o Cédula</label>
+        <input id="nitC" type="text" formControlName="Identificacion" [readonly]="Rol === 'Viewer'"
           class="block w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md  focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
       </div>
 
@@ -111,7 +110,8 @@
     <div class="flex justify-end mt-6">
       @if(Rol === 'Admin' || Rol === 'Editor'){
 
-      <button [disabled]="!form.valid" [class]="!form.valid ? 'cursor-not-allowed' : ''"
+      <button (click)="actualizarExpediente()" [disabled]="!form.valid"
+        [class]="!form.valid ? 'cursor-not-allowed' : ''"
         class="px-8 py-2.5 leading-5 rounded text-white transition-colors duration-300 transform bg-[#7fb91adc] hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
         Actualizar
       </button>
@@ -119,4 +119,4 @@
     </div>
   </form>
 </section>
-<app-tabla-expediente [expedientetabla]="expedientetabla"></app-tabla-expediente>
+<app-tabla-expediente [expedientetabla]="expedientetabla()"></app-tabla-expediente>

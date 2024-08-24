@@ -1,13 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ExpedienteService } from '@core/services/expediente.service';
 import { LoginService } from '@core/services/login.service';
 import { HeaderComponent } from '@shared/components/header/header.component';
+import TablaComponent from '../expediente/components/tabla/tabla.component';
+import { TablaExpedienteComponent } from '../expediente/components/tabla/tabla-expediente/tabla-expediente.component';
 
 @Component({
   selector: 'app-asignacion',
   standalone: true,
-  imports: [ReactiveFormsModule, HeaderComponent],
+  imports: [ReactiveFormsModule, HeaderComponent, TablaExpedienteComponent],
   templateUrl: './asignacion.component.html',
   styleUrl: './asignacion.component.css'
 })
@@ -25,6 +27,7 @@ export default class AsignacionComponent {
   nombreAbogado: any[] = []
   asignacion : any = {}
   expediente:any = {}
+  expedientetabla = signal({});
 
   ngOnInit(): void {
     this.expedienteService.expediente$.subscribe((res:any)=>{
@@ -38,6 +41,12 @@ export default class AsignacionComponent {
       this.expedienteService.buscarExpediente(res).subscribe((res:any)=>{
         this.expediente = res.result;
       });
+       this.expedienteService.getExpedienteTabla(res).subscribe((res)=>{
+        this.expedientetabla.set(res);
+
+        //this.expedientetabla = res
+
+      })
     })
   }
 
@@ -56,7 +65,7 @@ export default class AsignacionComponent {
 
   })
 
-  crearExpediente(){
+  actualizarAsignacion(){
     if(!this.form.valid){
       console.log("el formulario no es valido");
       return
@@ -71,7 +80,14 @@ export default class AsignacionComponent {
 
     }
 
-    this.expedienteService.actualizarAsignacion(Expediente).subscribe();
+    this.expedienteService.actualizarAsignacion(Expediente).subscribe({
+      next: (res)=>{
+        this.expedienteService.getExpedienteTabla(this.expediente.Numero_Expediente).subscribe((res)=>{
+        this.expedientetabla.set(res);
+        console.log('update tabla', res);
+        })
+      }
+    });
 
   }
 

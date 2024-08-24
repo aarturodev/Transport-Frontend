@@ -1,16 +1,17 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ExpedienteService } from '@core/services/expediente.service';
 import { LoginService } from '@core/services/login.service';
 import { HeaderComponent } from '@shared/components/header/header.component';
+import { TablaExpedienteComponent } from '../expediente/components/tabla/tabla-expediente/tabla-expediente.component';
 
 @Component({
   selector: 'app-auto-acumulacion',
   standalone: true,
   templateUrl: './auto-acumulacion.component.html',
   styleUrls: ['./auto-acumulacion.component.css'],
-  imports: [HeaderComponent, ReactiveFormsModule]
+  imports: [HeaderComponent, ReactiveFormsModule, TablaExpedienteComponent]
 
 })
 export default class AutoAcumulacionComponent implements OnInit {
@@ -25,6 +26,7 @@ export default class AutoAcumulacionComponent implements OnInit {
 
   expediente:any = {}
   autoAcumulacion:any = {}
+  expedientetabla = signal({});
 
   ngOnInit(): void {
 
@@ -46,6 +48,12 @@ export default class AutoAcumulacionComponent implements OnInit {
        this.expedienteService.buscarExpediente(res).subscribe((res:any)=>{
         this.expediente = res.result;
       });
+      this.expedienteService.getExpedienteTabla(res).subscribe((res)=>{
+        this.expedientetabla.set(res);
+
+        //this.expedientetabla = res
+
+      })
 
     })
   }
@@ -72,7 +80,14 @@ export default class AutoAcumulacionComponent implements OnInit {
       Usuario_Id : Number(this.loginService.getUser()),
       Ultima_Modificacion : this.expedienteService.getDate(),
     }
-    this.expedienteService.actualizarAutoacumulacion(AutoAcumulacion).subscribe();
+    this.expedienteService.actualizarAutoacumulacion(AutoAcumulacion).subscribe({
+      next: (res)=>{
+        this.expedienteService.getExpedienteTabla(this.expediente.Numero_Expediente).subscribe((res)=>{
+        this.expedientetabla.set(res);
+        console.log('update tabla', res);
+        })
+      }
+    });
 
   }
 

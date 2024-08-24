@@ -1,14 +1,15 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ExpedienteService } from '@core/services/expediente.service';
 import { LoginService } from '@core/services/login.service';
 import { HeaderComponent } from '@shared/components/header/header.component';
+import { TablaExpedienteComponent } from '../expediente/components/tabla/tabla-expediente/tabla-expediente.component';
 
 @Component({
   selector: 'app-apertura',
   standalone: true,
-  imports: [ReactiveFormsModule, HeaderComponent],
+  imports: [ReactiveFormsModule, HeaderComponent, TablaExpedienteComponent],
   templateUrl: './apertura.component.html',
   styleUrl: './apertura.component.css'
 })
@@ -23,6 +24,7 @@ export default class AperturaComponent implements OnInit{
   Rol = this.loginService.getRole();
 
   expediente:any = {}
+  expedientetabla = signal({});
   apertura:any = {}
 
    ngOnInit(): void {
@@ -51,6 +53,12 @@ export default class AperturaComponent implements OnInit{
       this.expedienteService.buscarExpediente(res).subscribe((res:any)=>{
         this.expediente = res.result;
       });
+       this.expedienteService.getExpedienteTabla(res).subscribe((res)=>{
+        this.expedientetabla.set(res);
+
+        //this.expedientetabla = res
+
+      })
 
 
     })
@@ -85,9 +93,15 @@ export default class AperturaComponent implements OnInit{
 
     }
 
-    this.expedienteService.actualizarApertura(Expediente).subscribe();
+    this.expedienteService.actualizarApertura(Expediente).subscribe({
+      next: (res)=>{
+        this.expedienteService.getExpedienteTabla(this.expediente.Numero_Expediente).subscribe((res)=>{
+        this.expedientetabla.set(res);
+        console.log('update tabla', res);
+        })
+      }
+    });
 
   }
-
 
 }

@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Conducta, ModalidadServicio, MotivoInvestigacion, SujetoSancionable, TipoPersonaNatural, TipoServicio } from '@core/models/Expediente';
 import { ExpedienteService } from '@core/services/expediente.service';
@@ -31,8 +31,8 @@ export default class TablaComponent implements OnInit{
   sujetoSancionable:SujetoSancionable[] = [];
   tipoPersonaNatural:TipoPersonaNatural[] = [];
   expediente:any = {}
-  expedientetabla : any = {}
-
+  expedientetabla = signal({});
+  isDisabled = true;
 
   ngOnInit(): void {
     const expediente = this.expedienteService.changeData(localStorage.getItem('expediente') || '');
@@ -54,7 +54,9 @@ export default class TablaComponent implements OnInit{
       });
 
       this.expedienteService.getExpedienteTabla(res).subscribe((res)=>{
-        this.expedientetabla = res
+        this.expedientetabla.set(res);
+
+        //this.expedientetabla = res
 
       })
 
@@ -142,7 +144,7 @@ export default class TablaComponent implements OnInit{
     this.expedienteService.actualizarExpediente(Expediente).subscribe({
       next: (res)=>{
         this.expedienteService.getExpedienteTabla(Expediente.Numero_Expediente).subscribe((res)=>{
-        this.expedientetabla = res
+        this.expedientetabla.set(res);
         console.log('update tabla', res);
 
       })

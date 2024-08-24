@@ -1,15 +1,16 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ExpedienteService } from '@core/services/expediente.service';
 import { LoginService } from '@core/services/login.service';
 import { HeaderComponent } from '@shared/components/header/header.component';
+import { TablaExpedienteComponent } from '../expediente/components/tabla/tabla-expediente/tabla-expediente.component';
 
 @Component({
   selector: 'app-estado-final',
   standalone: true,
   templateUrl: './estado-final.component.html',
   styleUrls: ['./estado-final.component.css'],
-  imports: [ReactiveFormsModule, HeaderComponent]
+  imports: [ReactiveFormsModule, HeaderComponent, TablaExpedienteComponent]
 })
 export default class EstadoFinalComponent implements OnInit {
 
@@ -22,6 +23,7 @@ export default class EstadoFinalComponent implements OnInit {
 
   tipoEstadoFinal :any[] = []
   expediente:any = {}
+  expedientetabla = signal({});
 
    ngOnInit(): void {
      this.expedienteService.expediente$.subscribe((res:any)=>{
@@ -32,6 +34,12 @@ export default class EstadoFinalComponent implements OnInit {
        this.expedienteService.buscarExpediente(res).subscribe((res:any)=>{
          this.expediente = res.result;
        });
+       this.expedienteService.getExpedienteTabla(res).subscribe((res)=>{
+        this.expedientetabla.set(res);
+
+        //this.expedientetabla = res
+
+      })
      })
    }
 
@@ -64,7 +72,14 @@ export default class EstadoFinalComponent implements OnInit {
 
     }
 
-    this.expedienteService.actualizarEstadoFinal(EstadoFinal).subscribe();
+    this.expedienteService.actualizarEstadoFinal(EstadoFinal).subscribe({
+       next: (res)=>{
+        this.expedienteService.getExpedienteTabla(this.expediente.Numero_Expediente).subscribe((res)=>{
+        this.expedientetabla.set(res);
+        console.log('update tabla', res);
+        })
+      }
+    });
 
 
 

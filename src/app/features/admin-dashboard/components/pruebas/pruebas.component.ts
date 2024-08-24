@@ -1,14 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Conducta, ModalidadServicio, MotivoInvestigacion, SujetoSancionable, TipoPersonaNatural, TipoServicio } from '@core/models/Expediente';
 import { ExpedienteService } from '@core/services/expediente.service';
 import { LoginService } from '@core/services/login.service';
 import { HeaderComponent } from '@shared/components/header/header.component';
+import { TablaExpedienteComponent } from '../expediente/components/tabla/tabla-expediente/tabla-expediente.component';
 
 @Component({
   selector: 'app-pruebas',
   standalone: true,
-  imports: [ReactiveFormsModule, HeaderComponent],
+  imports: [ReactiveFormsModule, HeaderComponent, TablaExpedienteComponent],
   templateUrl: './pruebas.component.html',
   styleUrl: './pruebas.component.css'
 })
@@ -22,6 +23,7 @@ export default class PruebasComponent {
   Rol = this.loginService.getRole();
 
   expediente:any = {}
+  expedientetabla = signal({});
 
 
   ngOnInit(): void {
@@ -52,6 +54,13 @@ export default class PruebasComponent {
       this.expedienteService.buscarExpediente(res).subscribe((res:any)=>{
         this.expediente = res.result;
       })
+       this.expedienteService.getExpedienteTabla(res).subscribe((res)=>{
+        this.expedientetabla.set(res);
+
+        //this.expedientetabla = res
+
+      })
+
 
 
     })
@@ -83,7 +92,14 @@ export default class PruebasComponent {
       Usuario_Id : Number(this.loginService.getUser())
     }
 
-    this.expedienteService.actualizarPruebas(Pruebas).subscribe();
+    this.expedienteService.actualizarPruebas(Pruebas).subscribe({
+       next: (res)=>{
+        this.expedienteService.getExpedienteTabla(this.expediente.Numero_Expediente).subscribe((res)=>{
+        this.expedientetabla.set(res);
+        console.log('update tabla', res);
+        })
+      }
+    });
 
   }
 
