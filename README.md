@@ -1,27 +1,32 @@
-# TransportPublic
+## Transporte Público 
+Frontend de una aplicación web para Movilidad Bogotá que optimiza la gestión de expedientes mediante su creación y actualización continua. Utilicé Angular para crear una interfaz de usuario intuitiva y dinámica, implementando autenticación por tokens, control de acceso basado en roles y un sistema seguro de inicio de sesión. La aplicación permite generar y descargar reportes detallados de cada expediente directamente desde el frontend.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.7.
+![image](https://github.com/user-attachments/assets/8df24b2d-3601-41b1-9018-81051096791c)
 
-## Development server
+![image](https://github.com/user-attachments/assets/26bd9d86-6806-4253-a624-eb4ef1562213)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+![image](https://github.com/user-attachments/assets/04503b95-890c-44e5-8130-30e35ffd49f1)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🚀 Contributing
 
-## Build
+1. [Fork](https://github.com/aarturodev/Transport-Frontend/fork) the repository.
+   
+3. Install dependencies.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```text
+# usando pnpm
+pnpm install
 
-## Running unit tests
+# usando npm
+npm install
+```
+3. Run the development server
+   
+```text
+# usando pnpm
+pnpm run start
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+# usando CLI
+ng serve
+```
