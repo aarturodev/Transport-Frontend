@@ -14,7 +14,7 @@ export class TablaExpedienteComponent{
   //@Input() expedientetabla: any = {};
   expedientetabla = input<any>();
   constructor(){
-    console.log('expedientetabla', this.expedientetabla);
+    
   }
 
 

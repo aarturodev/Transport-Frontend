@@ -2,17 +2,19 @@ import { inject } from '@angular/core';
 import { HttpInterceptorFn } from '@angular/common/http';
 import { LoginService } from '@core/services/login.service';
 import { EMPTY } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
 
 export const apiInterceptor: HttpInterceptorFn = (req, next) => {
 
   const loginService = inject(LoginService);
   const accessToken = loginService.getToken();
+  const url = environment.apiUrl;
 
-  if (req.url === "http://localhost:3000/login") {
+  if (req.url === url+"login") {
     return next(req);
   }
 
-  if (req.url === "http://localhost:3000/refresh") {
+  if (req.url === url+"refresh") {
     const reqClone = req.clone({
       setHeaders: {
         Authorization: `Bearer ${accessToken}`
@@ -20,7 +22,7 @@ export const apiInterceptor: HttpInterceptorFn = (req, next) => {
     });
     return next(reqClone);
   }
-  if (req.url === "http://localhost:3000/logout") {
+  if (req.url === url+"logout") {
     const reqClone = req.clone({
       setHeaders: {
         Authorization: `Bearer ${accessToken}`

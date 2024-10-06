@@ -5,6 +5,7 @@ import { Conducta, ModalidadServicio, MotivoInvestigacion, SujetoSancionable, Ti
 import { ExpedienteService } from '@core/services/expediente.service';
 import { LoginService } from '@core/services/login.service';
 import { TablaExpedienteComponent } from './tabla-expediente/tabla-expediente.component';
+import { ReporteService } from '@core/services/reporte.service';
 
 @Component({
   selector: 'app-tabla',
@@ -19,7 +20,7 @@ export default class TablaComponent implements OnInit{
   private http = inject(ExpedienteService)
   private expedienteService = inject(ExpedienteService)
   private loginService = inject(LoginService);
-  private cd = inject(ChangeDetectorRef);
+  private reporteService = inject(ReporteService);
 
   Rol = this.loginService.getRole();
 
@@ -152,6 +153,9 @@ export default class TablaComponent implements OnInit{
     });
 
   }
+
+  
+  
 
 
 }

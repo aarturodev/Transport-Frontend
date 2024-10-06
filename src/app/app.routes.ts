@@ -116,6 +116,10 @@ export const routes: Routes = [
             loadComponent: ()=> import('@features/admin-dashboard/components/ubicacion-expediente/ubicacion-expediente.component')
           },
           {
+            path: 'Reporte',
+            loadComponent: ()=> import('@features/admin-dashboard/components/Reporte/Reporte.component')
+          },
+          {
             path: 'Administrador-usuarios',
             loadComponent: ()=> import('@features/admin-dashboard/components/administrador-usuarios/administrador-usuarios.component')
           },

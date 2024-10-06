@@ -2,6 +2,7 @@ import { HttpClient} from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, tap} from 'rxjs';
+import { environment } from '../../../environments/environment.development';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ export class LoginService {
 
   private http = inject(HttpClient)
   private router = inject(Router);
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = environment.apiUrl;
   private tokenKey = 'access-token';
   private _isRefreshing = false;
 
@@ -33,7 +34,7 @@ export class LoginService {
    * @returns refresh token y lo guarda en una cookie
    */
   login(credentials: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/login`, credentials, { withCredentials: true }).pipe(
+    return this.http.post<any>(`${this.apiUrl}login`, credentials, { withCredentials: true }).pipe(
       tap(response => {
         const token = response.token;
         this.setToken(token);
@@ -47,7 +48,7 @@ export class LoginService {
    * @returns elimina la cookie del refresh token y elimina el access token del local storage
    */
   logout(): void {
-    this.http.post<any>(`${this.apiUrl}/logout`, {},{ withCredentials: true }).subscribe((res)=>{
+    this.http.post<any>(`${this.apiUrl}logout`, {},{ withCredentials: true }).subscribe((res)=>{
       localStorage.removeItem(this.tokenKey);
       localStorage.removeItem("user");
       localStorage.removeItem("expediente");
@@ -60,7 +61,7 @@ export class LoginService {
    * @returns access token nuevo
    */
   refresToken(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/refresh`, { withCredentials: true});
+    return this.http.get<any>(`${this.apiUrl}refresh`, { withCredentials: true});
   }
 
   /**

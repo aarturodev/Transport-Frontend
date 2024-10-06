@@ -6,6 +6,7 @@ import { BehaviorSubject, catchError, EMPTY, Observable, of, tap, throwError } f
 
 import Swal from 'sweetalert2';
 import { LoginService } from './login.service';
+import { environment } from '../../../environments/environment.development';
 
 
 @Injectable({
@@ -13,7 +14,7 @@ import { LoginService } from './login.service';
 })
 export class ExpedienteService {
 
-  private Url = 'http://localhost:3000/expediente';
+  private Url = environment.apiUrl+'expediente';
   private http = inject(HttpClient)
   private router = inject(Router)
   private service = inject(LoginService)
