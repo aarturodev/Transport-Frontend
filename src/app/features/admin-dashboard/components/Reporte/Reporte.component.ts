@@ -22,6 +22,9 @@ export default class ReporteComponent {
   expediente = '';
   estado = '';
   sujeto = '';
+  iuit = '';
+  Resolucion = '';
+  Placa = '';
 
   reporteService = inject(ReporteService)
 
@@ -45,10 +48,14 @@ export default class ReporteComponent {
 
       this.reporteService.verificarReporte(this.form.value).subscribe({
         next: (res:any)=>{
+          console.log("responses: ",res);
            this.expediente = res.result?.expediente;
             this.estado = res.result?.estado;
             this.sujeto = res?.sujeto;
-          console.log(res);
+            this.iuit = res.result?.IUIT;
+            this.Resolucion = res.result?.Numero_Resolucion;
+            this.Placa = res.result?.placa;
+       
           if(res.result.success === null){
             Swal.fire({
               icon: 'error',
@@ -129,8 +136,8 @@ export default class ReporteComponent {
   }
 
 
-  downloadPDF(expediente: any, estado: any, sujeto:any) {
-    this.reporteService.getReporte(expediente,estado, sujeto ).subscribe({
+  downloadPDF(expediente: any, estado: any, sujeto:any, iuit: any, Resolucion: any, Placa:any) {
+    this.reporteService.getReporte(expediente,estado, sujeto, iuit, Resolucion, Placa ).subscribe({
       next: (response: any) => {
       const blob = new Blob([response], { type: 'application/docx' });
       const url = window.URL.createObjectURL(blob);

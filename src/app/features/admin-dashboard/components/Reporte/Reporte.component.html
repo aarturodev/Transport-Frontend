@@ -5,7 +5,7 @@
   <button class="absolute top-0 right-0 m-4" (click)="volver()">
     Volver
   </button>
-  <button (click)="downloadPDF(expediente, estado, sujeto)"
+  <button (click)="downloadPDF(expediente, estado, sujeto, iuit, Resolucion, Placa)"
     class="size-20 transition-all duration-300 hover:bg-neutral-300 rounded-md " aria-label="Rescargar Reporte"
     alt="Descargar Reporte" title="Descargar Reporte">
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,13 +23,13 @@
   <form class="w-full flex justify-center items-center" [formGroup]="form" (ngSubmit)="Buscar()">
     <div class="flex flex-col gap-4 w-50 shadow p-8">
       <div class="flex justify-center gap-4">
-        <h1 class="text-2xl font-bold text-[#bed000] dark:text-white">Generar Reporte</h1>
+        <h1 class="text-2xl font-bold text-[#bed000]">Generar Reporte</h1>
       </div>
       @if(flag){
       <span class="text-red-300 text-sm">Todos los datos son requeridos</span>
       }
       <div>
-        <label for="tipoBusqueda" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de
+        <label for="tipoBusqueda" class="mb-2 text-sm font-medium text-gray-900">Tipo de
           Búsqueda</label>
         <select id="tipoBusqueda" formControlName="TipoBusqueda"
           class="w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring">
@@ -40,22 +40,22 @@
         </select>
       </div>
       <div>
-        <label for="N°" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">N°</label>
+        <label for="N°" class="mb-2 text-sm font-medium text-gray-900 ">N°</label>
         <input type="text" id="N°" formControlName="Numero_Busqueda"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          class="w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring"
           required />
       </div>
       <div>
-        <label for="name" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre del
+        <label for="name" class="mb-2 text-sm font-medium text-gray-900 ">Nombre del
           Solicitante</label>
         <input type="text" id="name" formControlName="Nombre_Solicitante"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          class="w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring"
           required />
       </div>
       <div>
-        <label for="nit" class="mb-2 text-sm font-medium text-gray-900 dark:text-white">Nit o cédula</label>
+        <label for="nit" class="mb-2 text-sm font-medium text-gray-900 ">Nit o cédula</label>
         <input type="int" max="10" id="nit" formControlName="Nit_Solicitante"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          class="w-full px-4 py-2 mt-2 text-gray-400 bg-white border border-gray-200 rounded-md focus:border-[#bed000] focus:ring-[#bed000] focus:ring-opacity-40 focus:outline-none focus:ring"
           required />
       </div>
       <div class="flex justify-center mt-4">

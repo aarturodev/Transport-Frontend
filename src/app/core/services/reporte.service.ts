@@ -9,10 +9,10 @@ export class ReporteService {
 
   http = inject(HttpClient)
 
-  getReporte(expediente:string, estado:string, sujeto:string){
+  getReporte(expediente:string, estado:string, sujeto:string, iuit:string, resolucion:string, placa:string){
     const apiUrl = environment.apiUrl;
     const url = apiUrl+'reporte/';
-    return this.http.get(url, {params:{expediente, estado, sujeto}, responseType: 'blob'});
+    return this.http.get(url, {params:{expediente, estado, sujeto, iuit, resolucion, placa}, responseType: 'blob'});
   }
 
   verificarReporte(data: any){
